@@ -10,6 +10,9 @@ const suffix = {
   test: "-test",
 };
 
+console.log(process.env.MYSQL_DB_NAME);
+console.log(process.env.MYSQL_USER);
+console.log(process.env.MYSQL_PASSWORD);
 const options = {
   host: process.env.MYSQL_HOST || 'mysql',
   port: process.env.MYSQL_PORT || '3306',

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Sale = sequelize.define('Sale', {
+  const Sale = sequelize.define('sale', {
     user_id: { type: DataTypes.INTEGER, foreignKey: true },
     seller_id: { type: DataTypes.INTEGER, foreignKey: true },
     total_price: DataTypes.DECIMAL,
