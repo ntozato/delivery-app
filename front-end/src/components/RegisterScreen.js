@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
+import RegisterButton from './RegisterButton';
 
 const RegisterScreen = () => {
   const { handleChange } = useContext(Context);
@@ -37,13 +38,7 @@ const RegisterScreen = () => {
             onChange={ handleChange }
           />
         </label>
-        <button
-          data-testid="common_register__button-register"
-          type="button"
-        >
-          Cadastrar
-
-        </button>
+        <RegisterButton />
       </form>
     </div>
   );
