@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import Context from './Context';
 
 const ContextProvider = ({ children }) => {
-  const [test, setTest] = useState('oi');
+  const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
+
+  const handleChange = ({ target: { value, name } }) => {
+    setRegisterData({ ...registerData, [name]: value });
+  };
 
   const contextValue = {
-    test,
-    setTest,
+    registerData,
+    setRegisterData,
+    handleChange,
   };
 
   return (
