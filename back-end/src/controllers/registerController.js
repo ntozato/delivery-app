@@ -7,7 +7,7 @@ const createUser = rescue(async (req, res) => {
   const payload = { name, email, password };
   const result = await service.createUser(payload);
   if (result.created) {
-    return res.status(StatusCodes.CREATED).json(result.user);
+    return res.status(StatusCodes.CREATED).json(result.userData);
   }
   return res.status(StatusCodes.CONFLICT).json('Usuário já cadastrado');
 });
