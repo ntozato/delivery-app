@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import api from '../api';
 // import Context from './context/Context';
 
 function Login() {
-  const [isError] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [isDisable, setIsDisable] = useState(true);
   const [email, setEmail] = useState(true);
   const [password, setPassword] = useState(true);
+
+  const handleClickLogin = async () => {
+    try {
+      await api.login({ email, password });
+    } catch (error) {
+      setIsError(true);
+    }
+  };
   useEffect(() => {
     const minimalPasswordLength = 6;
-    // Verificação de email conseguido através do site do Stackoverflow no link https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
+    // Verificação de email através do site do Stackoverflow no link https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const emailValidationRegex = /^[_a-z0-9-]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    // Conseguido a resolução do emailValidationRegex.test atrasvés do site do w3schools
+    // Resolução do emailValidationRegex.test atrasvés do site do w3schools
     if (emailValidationRegex.test(email) && password.length >= minimalPasswordLength) {
       setIsDisable(false);
     } else {
@@ -37,7 +46,8 @@ function Login() {
         <button
           type="button"
           disabled={ isDisable }
-          data-testid="common_login__button-login"
+          onClick={ handleClickLogin }
+          data-testId="common_login__button-login"
         >
           LOGIN
         </button>
