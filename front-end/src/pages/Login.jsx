@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import api from '../api';
 // import Context from './context/Context';
 
 function Login() {
   const [isError, setIsError] = useState(false);
+  const [loginOk, setLoginOk] = useState(false);
   const [isDisable, setIsDisable] = useState(true);
   const [email, setEmail] = useState(true);
   const [password, setPassword] = useState(true);
 
   const handleClickLogin = async () => {
     try {
-      await api.login({ email, password });
+      await api.login({ email, password }).then(() => setLoginOk(true));
     } catch (error) {
       setIsError(true);
     }
   };
+  /*
+zebirita@email.com
+$#zebirita#$
+  */
   useEffect(() => {
     const minimalPasswordLength = 6;
     // Verificação de email através do site do Stackoverflow no link https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
@@ -26,10 +32,10 @@ function Login() {
       setIsDisable(true);
     }
   }, [email, password.length]);
-  // const { test } = useContext(Context);
 
   return (
     <div className="Login">
+      {loginOk && <Navigate to="/customer/products" />}
       <form>
         <input
           type="text"
