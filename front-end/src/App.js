@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Routes } from 'react-router';
 import Raiz from './pages/Raiz';
 import Login from './pages/Login';
-import RegisterScreen from './components/RegisterScreen';
+import RegisterScreen from './pages/RegisterScreen';
 import Customer from './pages/Customer';
 // import rockGlass from './images/rockGlass.svg';
 // import Context from './context/Context';
