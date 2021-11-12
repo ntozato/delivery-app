@@ -1,12 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const loginRoute = require('../routes/login.route');
+const { registerRoute, loginRoute } = require('../routes/index');
+const { uniqueConstraintError } = require('../middlewares/errorMiddleware');
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
+
+app.post('/register', registerRoute);
 app.use('/login', loginRoute);
-app.get('/coffee', (_req, res) => res.status(418).send('ok'));
+
+app.use(uniqueConstraintError);
 
 module.exports = app;
