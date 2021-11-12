@@ -1,9 +1,16 @@
-const service = require('../service/registerService');
+const { StatusCodes } = require('http-status-codes');
+const rescue = require('express-rescue');
+const service = require('../services/registerService');
 
-const createUser = async () => {
-  const create = await service.createUser();
-  return create;
-};
+const createUser = rescue(async (req, res) => {
+  const { name, email, password } = req.body;
+  const payload = { name, email, password };
+  const result = await service.createUser(payload);
+  if (result.created) {
+    return res.status(StatusCodes.CREATED).json(result.user);
+  }
+  return res.status(StatusCodes.CONFLICT).json('Usuário já cadastrado');
+});
 
 module.exports = {
   createUser,
