@@ -9,6 +9,7 @@ function Login() {
   const [isDisable, setIsDisable] = useState(true);
   const [email, setEmail] = useState(true);
   const [password, setPassword] = useState(true);
+  const [redirect, setRedirect] = useState(false);
 
   const handleClickLogin = async () => {
     try {
@@ -36,6 +37,7 @@ $#zebirita#$
   return (
     <div className="Login">
       {loginOk && <Navigate to="/customer/products" />}
+      {redirect && <Navigate to="/register" />}
       <form>
         <input
           type="text"
@@ -57,7 +59,11 @@ $#zebirita#$
         >
           LOGIN
         </button>
-        <button type="button" data-testid="common_login__button-register">
+        <button
+          type="button"
+          onClick={ () => setRedirect(!redirect) }
+          data-testid="common_login__button-register"
+        >
           Ainda não tenho conta
         </button>
       </form>
