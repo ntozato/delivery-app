@@ -12,7 +12,10 @@ function Login() {
 
   const handleClickLogin = async () => {
     try {
-      await api.login({ email, password }).then(() => setLoginOk(true));
+      await api.login({ email, password }).then(() => {
+        setLoginOk(true);
+        setIsError(false);
+      });
     } catch (error) {
       setIsError(true);
     }
@@ -35,7 +38,7 @@ $#zebirita#$
 
   return (
     <div className="Login">
-      {loginOk && <Navigate to="/customer/products" />}
+      { loginOk && <Navigate to="/customer/products" /> }
       <form>
         <input
           type="text"
