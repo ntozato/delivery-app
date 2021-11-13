@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken');
 
 const path = require('path');
 
-const keyFile = path.resolve(__dirname, '..', '..','jwt.evaluation.key');
+const keyFile = path.resolve(__dirname, '..', '..', 'jwt.evaluation.key');
 
-const secret = require("fs")
-  .readFileSync(keyFile, { encoding: "utf-8" }).trim();
+const secret = require('fs')
+  .readFileSync(keyFile, { encoding: 'utf-8' }).trim();
 
 const jtwConfig = {
   expiresIn: '25m',
