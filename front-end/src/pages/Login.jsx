@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import api from '../api';
-// import Context from './context/Context';
+import { loginIsDisabled } from '../helpers/validations';
 
 function Login() {
   const [isError, setIsError] = useState(false);
   const [loginOk, setLoginOk] = useState(false);
-  const [isDisable, setIsDisable] = useState(true);
-  const [email, setEmail] = useState(true);
-  const [password, setPassword] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
 
   const handleClickLogin = async () => {
@@ -18,21 +17,6 @@ function Login() {
       setIsError(true);
     }
   };
-  /*
-zebirita@email.com
-$#zebirita#$
-  */
-  useEffect(() => {
-    const minimalPasswordLength = 6;
-    // Verificação de email através do site do Stackoverflow no link https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
-    const emailValidationRegex = /^[_.a-z0-9-]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    // Resolução do emailValidationRegex.test atrasvés do site do w3schools
-    if (emailValidationRegex.test(email) && password.length >= minimalPasswordLength) {
-      setIsDisable(false);
-    } else {
-      setIsDisable(true);
-    }
-  }, [email, password.length]);
 
   return (
     <div className="Login">
@@ -53,7 +37,7 @@ $#zebirita#$
         />
         <button
           type="button"
-          disabled={ isDisable }
+          disabled={ loginIsDisabled({ email, password }) }
           onClick={ handleClickLogin }
           data-testid="common_login__button-login"
         >
@@ -69,7 +53,7 @@ $#zebirita#$
       </form>
       { isError && (
         <h1 data-testid="common_login__element-invalid-email">
-          Um Erro qualquer :)
+          Um Erro qualquer
         </h1>
       ) }
     </div>
