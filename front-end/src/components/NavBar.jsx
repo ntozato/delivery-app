@@ -1,8 +1,17 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Context from '../context/Context';
 
 export default function NavBar() {
-  const { userData } = useContext(Context);
+  const { userData, setUserData } = useContext(Context);
+  const navegate = useNavigate();
+
+  const resetLocal = () => {
+    localStorage.removeItem('user');
+    setUserData(false);
+    navegate('/login');
+  };
+
   return (
     <nav>
       <button
@@ -29,6 +38,7 @@ export default function NavBar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-logout"
+        onClick={ resetLocal }
       >
         Sair
 
