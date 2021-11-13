@@ -1,5 +1,5 @@
 const registerRoute = require('./registerRoute');
 const loginRoute = require('./loginRoute');
-const costumerRoute = require('./costumerRoute');
+const custumerRoute = require('./custumerRoute');
 
-module.exports = { registerRoute, loginRoute, costumerRoute };
+module.exports = { registerRoute, loginRoute, custumerRoute };

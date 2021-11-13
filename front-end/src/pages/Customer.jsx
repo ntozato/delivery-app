@@ -10,6 +10,11 @@ function Customer() {
   const getUserData = async (email) => {
     try {
       const { data: user } = await api.getDataUser(email);
+
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      user.token = token;
+      localStorage.setItem('user', JSON.stringify(user));
+
       setUserData(user);
     } catch (error) {
       console.log(error);
@@ -20,7 +25,9 @@ function Customer() {
     if (!userData) {
       getUserData(userEmail);
     }
-  }, [getUserData, userData, userEmail]);
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="Customer">
       <NavBar />
@@ -29,3 +36,8 @@ function Customer() {
 }
 
 export default Customer;
+
+/*
+zebirita@email.com
+$#zebirita#$
+*/
