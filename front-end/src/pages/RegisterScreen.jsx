@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
-import RegisterButton from './RegisterButton';
+import RegisterButton from '../components/RegisterButton';
 
 const RegisterScreen = () => {
   const { handleChange } = useContext(Context);

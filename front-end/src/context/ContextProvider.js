@@ -4,6 +4,8 @@ import Context from './Context';
 
 const ContextProvider = ({ children }) => {
   const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
+  const [userEmail, setUserEmail] = useState('');
+  const [userData, setUserData] = useState(false);
 
   const handleChange = ({ target: { value, name } }) => {
     setRegisterData({ ...registerData, [name]: value });
@@ -13,11 +15,15 @@ const ContextProvider = ({ children }) => {
     registerData,
     setRegisterData,
     handleChange,
+    userEmail,
+    setUserEmail,
+    userData,
+    setUserData,
   };
 
   return (
     <Context.Provider value={ contextValue }>
-      {children}
+      { children }
     </Context.Provider>
   );
 };

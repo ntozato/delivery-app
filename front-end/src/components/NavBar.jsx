@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Context from '../context/Context';
 
 export default function NavBar() {
+  const { userData } = useContext(Context);
   return (
     <nav>
       <button
@@ -19,7 +21,10 @@ export default function NavBar() {
 
       </button>
 
-      <p data-testid="customer_products__element-navbar-user-full-name">Nome</p>
+      <p data-testid="customer_products__element-navbar-user-full-name">
+        { userData.name }
+
+      </p>
 
       <button
         type="button"
