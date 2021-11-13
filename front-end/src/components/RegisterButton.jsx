@@ -2,18 +2,12 @@ import React, { useState, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import Context from '../context/Context';
 import api from '../api';
+import { registerIsDisabled } from '../helpers/validations';
 
 const RegisterButton = () => {
   const { registerData } = useContext(Context);
   const [redirect, setRedirect] = useState(false);
   const [isError, setIsError] = useState(false);
-  const nameMinLength = 12;
-  const passwordMinLength = 6;
-  const emailRegex = /^[_.a-z0-9-]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-  const isEmailValid = emailRegex.test(registerData.email);
-  const isValidName = registerData.name.length >= nameMinLength;
-  const isValidPassword = registerData.password.length >= passwordMinLength;
-  const isDisabled = !(isValidName && isEmailValid && isValidPassword);
 
   const handleSubmit = async () => {
     try {
@@ -22,7 +16,6 @@ const RegisterButton = () => {
         setRedirect(!redirect);
       }
     } catch (error) {
-      console.log('cheguei aqui');
       setIsError(!isError);
     }
   };
@@ -33,7 +26,7 @@ const RegisterButton = () => {
       <button
         data-testid="common_register__button-register"
         type="button"
-        disabled={ isDisabled }
+        disabled={ registerIsDisabled(registerData) }
         onClick={ handleSubmit }
       >
         Cadastrar
