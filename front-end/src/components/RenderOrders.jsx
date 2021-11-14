@@ -3,7 +3,8 @@ import Context from '../context/Context';
 
 const RenderOrders = () => {
   const { orders, setOrders } = useContext(Context);
-  const deleteOrder = () => {
+
+  const deleteOrder = (order) => {
     const newOrders = orders.filter((o) => o.name !== order.name);
     setOrders(newOrders);
   };
@@ -23,6 +24,7 @@ const RenderOrders = () => {
             *
             {order.price}
           </div>
+          <button type="button" onClick={ () => deleteOrder(order) }>Remover</button>
         </div>
       ))}
     </div>);
