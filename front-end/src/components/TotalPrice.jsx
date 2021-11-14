@@ -7,7 +7,7 @@ const TotalPrice = () => {
 
   const calculateTotal = () => allSubtotals.reduce(((acc, curr) => acc + curr), 0);
   return (
-    <div>
+    <div data-testid="customer_checkout__element-order-total-price">
       Total R$
       {calculateTotal()}
     </div>
