@@ -64,7 +64,8 @@ const RenderOrders = () => {
           </button>
         </tr>
       ))}
-    </tbody>);
+    </tbody>
+  );
 };
 
 export default RenderOrders;
