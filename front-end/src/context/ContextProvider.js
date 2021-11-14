@@ -4,9 +4,9 @@ import Context from './Context';
 
 const ContextProvider = ({ children }) => {
   const testOrders = [
-    { name: 'cachaça', price: '5.50' },
-    { name: 'cerveja', price: '2.30' },
-    { name: 'licor', price: '32,90' },
+    { name: 'cachaça', price: 5.50, quantity: 2 },
+    { name: 'cerveja', price: 2.30, quantity: 5 },
+    { name: 'licor', price: 32.90, quantity: 1 },
   ];
 
   const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });

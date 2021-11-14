@@ -9,25 +9,25 @@ const RenderOrders = () => {
     setOrders(newOrders);
   };
 
+  const calculateSubtotal = (quantity, price) => quantity * price;
+
   return (
-    <div>
+    <tbody>
       {orders.map((order, index) => (
-        <div key={ index }>
-          <div>{index}</div>
-          <div>
+        <tr key={ index }>
+          <td>{index}</td>
+          <td>
             {order.name}
-          </div>
-          <div>{order.quantity}</div>
-          <div>{order.price}</div>
-          <div>
-            {order.quantity}
-            *
-            {order.price}
-          </div>
+          </td>
+          <td>{order.quantity}</td>
+          <td>{order.price}</td>
+          <td>
+            {calculateSubtotal(order.quantity, order.price)}
+          </td>
           <button type="button" onClick={ () => deleteOrder(order) }>Remover</button>
-        </div>
+        </tr>
       ))}
-    </div>);
+    </tbody>);
 };
 
 export default RenderOrders;
