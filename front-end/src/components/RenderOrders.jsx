@@ -14,17 +14,54 @@ const RenderOrders = () => {
   return (
     <tbody>
       {orders.map((order, index) => (
-        <tr key={ index }>
-          <td>{index}</td>
-          <td>
+        <tr key={ index + 1 }>
+          <td
+            data-testid={ `customer_checkout__element-order-table-item-number-
+          ${index + 1}` }
+          >
+            {index}
+          </td>
+          <td
+            data-testid={
+              `customer_checkout__element-order-table-name-${index}`
+            }
+          >
             {order.name}
           </td>
-          <td>{order.quantity}</td>
-          <td>{order.price}</td>
-          <td>
+          <td
+            data-testid={
+              `customer_checkout__element-order-table-quantity-${index}`
+            }
+          >
+            {order.quantity}
+
+          </td>
+          <td
+            data-testid={
+              `customer_checkout__element-order-table-unit-price-${index}`
+            }
+          >
+            {order.price}
+
+          </td>
+          <td
+            data-testid={
+              `customer_checkout__element-order-table-sub-total-
+              ${index}`
+            }
+          >
             {calculateSubtotal(order.quantity, order.price)}
           </td>
-          <button type="button" onClick={ () => deleteOrder(order) }>Remover</button>
+          <button
+            data-testid={
+              `customer_checkout__element-order-table-remove-${index}`
+            }
+            type="button"
+            onClick={ () => deleteOrder(order) }
+          >
+            Remover
+
+          </button>
         </tr>
       ))}
     </tbody>);
