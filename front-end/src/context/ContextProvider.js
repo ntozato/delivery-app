@@ -15,6 +15,8 @@ const ContextProvider = ({ children }) => {
   const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
   const [orders, setOrders] = useState(testOrders);
   const [detailsAddress, setDetailsAddress] = useState(detailAddressInitialState);
+  const [userEmail, setUserEmail] = useState('');
+  const [userData, setUserData] = useState(false);
 
   const handleChange = ({ target: { value, name } }) => {
     setRegisterData({ ...registerData, [name]: value });
@@ -28,11 +30,15 @@ const ContextProvider = ({ children }) => {
     setOrders,
     detailsAddress,
     setDetailsAddress,
+    userEmail,
+    setUserEmail,
+    userData,
+    setUserData,
   };
 
   return (
     <Context.Provider value={ contextValue }>
-      {children}
+      { children }
     </Context.Provider>
   );
 };
