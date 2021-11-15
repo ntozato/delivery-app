@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 // import { Navigate } from 'react-router-dom';
 import Context from '../context/Context';
 import api from '../api/index';
+import CatalogProducts from '../components/CatalogProducts';
 
 function Customer() {
   const { userEmail, userData, setUserData } = useContext(Context);
@@ -31,6 +32,7 @@ function Customer() {
   return (
     <div className="Customer">
       <NavBar />
+      <CatalogProducts />
     </div>
   );
 }
