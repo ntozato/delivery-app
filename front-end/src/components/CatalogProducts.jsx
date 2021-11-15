@@ -4,7 +4,7 @@ import Context from '../context/Context';
 import ProdutsCard from './ProdutsCard';
 
 export default function CatalogProducts() {
-  const { quantityProducts, setQuantityProducs } = useContext(Context);
+  const { setQuantityProducs } = useContext(Context);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -12,10 +12,13 @@ export default function CatalogProducts() {
     try {
       setIsLoading(true);
       const { data: allProducts } = await api.getAllProduts();
-      console.log(allProducts);
+
+      const tempQuant = {};
       allProducts.forEach(({ id }) => {
-        setQuantityProducs({ ...quantityProducts, [id]: 0 });
+        tempQuant[id] = 0;
       });
+
+      setQuantityProducs(tempQuant);
       setProducts(allProducts);
       setIsLoading(false);
     } catch (error) {

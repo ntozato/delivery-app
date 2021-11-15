@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Context from '../context/Context';
 
 export default function ProdutsCard({
   product: { id, name, price, url_image: urlImage } }) {
+  const { quantityProducts } = useContext(Context);
+
   return (
     <div>
       <p data-testid={ `customer_products__element-card-price-${id}` }>
@@ -26,8 +29,9 @@ export default function ProdutsCard({
       </button>
       <input
         style={ { width: '20px' } }
-        type="number"
+        type="text"
         data-testid={ `customer_products__input-card-quantity-${id}` }
+        value={ quantityProducts[id] }
       />
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
@@ -42,6 +46,6 @@ export default function ProdutsCard({
 
 ProdutsCard.propTypes = {
   product: PropTypes.objectOf(
-    PropTypes.string,
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   ).isRequired,
 };
