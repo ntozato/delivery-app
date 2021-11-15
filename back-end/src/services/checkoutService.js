@@ -1,10 +1,10 @@
-const { sale } = require('../database/models');
+const { sale, salesProduct } = require('../database/models');
 
-const createSale = async (payload) => {
-    const result = await sale.create(payload);
-    console.log(result);
-};
+const createSale = async (payload) => sale.create(payload);
+
+const createSalesProducts = async (payload) => salesProduct.create(payload);
 
 module.exports = {
     createSale,
+    createSalesProducts,
 };
