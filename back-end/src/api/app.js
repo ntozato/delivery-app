@@ -7,10 +7,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post('/register', registerRoute);
+app.use('/register', registerRoute);
 app.use('/login', loginRoute);
 app.use('/custumer', custumerRoute);
-app.post('/checkout', checkoutRoute);
+app.use('/checkout', checkoutRoute);
 
 app.use(uniqueConstraintError);
 
