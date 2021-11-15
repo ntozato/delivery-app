@@ -4,12 +4,12 @@ import Context from '../context/Context';
 
 export default function NavBar() {
   const { userData, setUserData } = useContext(Context);
-  const navegate = useNavigate();
+  const navigate = useNavigate();
 
   const resetLocal = () => {
     localStorage.removeItem('user');
     setUserData(false);
-    navegate('/login');
+    navigate('/login');
   };
 
   return (
