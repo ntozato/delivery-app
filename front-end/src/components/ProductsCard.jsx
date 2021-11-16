@@ -1,22 +1,44 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from '../context/Context';
 import './ProductsCard.css';
 
 export default function ProdutsCard({
   product: { id, name, price, url_image: urlImage } }) {
-  const { quantityProducts, setQuantityProducts } = useContext(Context);
+  const {
+    quantityProducts,
+    setQuantityProducts,
+    setTotalPrice } = useContext(Context);
+
+  const [quantityCard, setQuantityCard] = useState(0);
+
+  useEffect(() => {
+    const aux = { ...quantityProducts };
+    aux[id].qtd = Number(quantityCard);
+    localStorage.setItem('carrinho', JSON.stringify(aux));
+    const keysProducts = Object.keys(aux);
+    const arrValues = keysProducts.map((key) => aux[key].qtd * aux[key].price);
+    const value = arrValues.reduce((acc, curr) => acc + curr);
+    setTotalPrice(value.toFixed(2));
+  }, [quantityCard]);
+
+  const updateTotalPrice = {
+    add: () => setQuantityCard(Number(quantityCard) + 1),
+    remove: () => setQuantityCard(Number(quantityCard) - 1),
+  };
 
   const increaseProduct = () => {
     const aux = { ...quantityProducts };
-    aux[id] += 1;
+    aux[id].qtd += 1;
     setQuantityProducts(aux);
+    updateTotalPrice.add();
   };
   const decreaseProduct = () => {
     const aux = { ...quantityProducts };
-    if (aux[id] > 0) {
-      aux[id] -= 1;
+    if (aux[id].qtd > 0) {
+      aux[id].qtd -= 1;
       setQuantityProducts(aux);
+      updateTotalPrice.remove();
     }
   };
 
@@ -46,7 +68,8 @@ export default function ProdutsCard({
           className="quantity-input"
           type="text"
           data-testid={ `customer_products__input-card-quantity-${id}` }
-          value={ quantityProducts[id] }
+          value={ quantityCard }
+          onChange={ ({ target: { value } }) => setQuantityCard(value) }
         />
         <button
           onClick={ increaseProduct }
@@ -57,6 +80,7 @@ export default function ProdutsCard({
 
         </button>
       </div>
+
     </div>
   );
 }

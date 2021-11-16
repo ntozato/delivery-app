@@ -7,7 +7,7 @@ import CatalogProducts from '../components/CatalogProducts';
 import './Customer.css';
 
 function Customer() {
-  const { userEmail, userData, setUserData } = useContext(Context);
+  const { userEmail, userData, setUserData, totalPrice } = useContext(Context);
   const navegate = useNavigate();
 
   const getUserData = async (email) => {
@@ -25,6 +25,7 @@ function Customer() {
   };
 
   useEffect(() => {
+    console.log(totalPrice);
     if (!userData) {
       getUserData(userEmail);
     }
@@ -36,11 +37,16 @@ function Customer() {
       <NavBar />
       <CatalogProducts />
       <button
+        disabled={ totalPrice === '0.00' }
         type="button"
         onClick={ () => navegate('/customer/checkout') }
         data-testid="customer_products__button-cart"
+
       >
-        Ver Carrinho
+        Ver Carrinho: R$
+        <p data-testid="customer_products__checkout-bottom-value">
+          { totalPrice.toString().replace('.', ',') }
+        </p>
       </button>
     </div>
   );
