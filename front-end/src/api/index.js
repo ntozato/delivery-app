@@ -8,4 +8,6 @@ const getDataUser = (email) => axios.get(`${url}custumer?email=${email}`);
 
 const register = (newUser) => axios.post(`${url}register`, newUser);
 
-export default { login, register, getDataUser };
+const getAllSellers = () => axios.get(`${url}users/sellers`);
+
+export default { login, register, getDataUser, getAllSellers };

@@ -10,11 +10,9 @@ const ContextProvider = ({ children }) => {
     { product_id: 3, name: 'licor', price: 32.90, quantity: 1 },
   ];
 
-  const detailAddressInitialState = { address: '', number: '', seller: 'vendedor 1' };
-
   const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
   const [orders, setOrders] = useState(testOrders);
-  const [detailsAddress, setDetailsAddress] = useState(detailAddressInitialState);
+  const [detailsAddress, setDetailsAddress] = useState({});
   const [userEmail, setUserEmail] = useState('');
   const [userData, setUserData] = useState(false);
 

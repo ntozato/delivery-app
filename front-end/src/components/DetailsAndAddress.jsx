@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
+import SelectSeller from './SelectSeller';
 
 const DetailsAndAddress = () => {
   const { detailsAddress, setDetailsAddress } = useContext(Context);
@@ -12,13 +13,7 @@ const DetailsAndAddress = () => {
     <div>
       <h3>Detalhes e endereço para entrega</h3>
       <form>
-        <label htmlFor="seller">
-          Vendedor responsável
-          <select id="seller" name="seller" onChange={ handleChange }>
-            <option>Vendedor 1</option>
-            <option>Vendedor 2</option>
-          </select>
-        </label>
+        <SelectSeller handleChange={ handleChange } />
         <label htmlFor="address">
           Endereço
           <input id="address" name="address" onChange={ handleChange } />
