@@ -8,7 +8,7 @@ export default function ProdutsCard({
   const { quantityProducts } = useContext(Context);
 
   return (
-    <div id="product-card">
+    <div className="product-card">
       <p data-testid={ `customer_products__element-card-price-${id}` }>
         Price:
         { `  R$ ${price.replace('.', ',')}` }
@@ -29,7 +29,7 @@ export default function ProdutsCard({
 
         </button>
         <input
-          id="quantity-input"
+          className="quantity-input"
           type="text"
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ quantityProducts[id] }

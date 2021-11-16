@@ -35,7 +35,7 @@ export default function CatalogProducts() {
     <div>
       { isLoading ? <p>Loading....</p>
         : (
-          <div id="catalog-div">
+          <div className="catalog-div">
             { products.map((product) => (<ProdutsCard
               key={ product.id }
               product={ product }

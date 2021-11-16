@@ -1,4 +1,4 @@
-#product-card {
+.product-card {
   align-items: center;
   background-color: white;
   display: flex;
@@ -14,7 +14,7 @@ img {
   width: 100px;
 }
 
-#quantity-input {
+.quantity-input {
   text-align: center;
   width: 10px;
 }
