@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import api from '../api';
 import { loginIsDisabled } from '../helpers/validations';
+import Context from '../context/Context';
 
 function Login() {
+  const { setUserEmail } = useContext(Context);
   const [isError, setIsError] = useState(false);
   const [loginOk, setLoginOk] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  /* const [email, setEmail] = useState('zebirita@email.com');
+  const [password, setPassword] = useState('$#zebirita#$'); */
   const [redirect, setRedirect] = useState(false);
 
   const handleClickLogin = async () => {
     try {
-      await api.login({ email, password }).then(() => setLoginOk(true));
+      await api.login({ email, password }).then(({ data: token }) => {
+        localStorage.setItem('user', JSON.stringify({ token }));
+        setUserEmail(email);
+        setLoginOk(true);
+        setIsError(false);
+      });
     } catch (error) {
       setIsError(true);
     }
@@ -20,8 +29,8 @@ function Login() {
 
   return (
     <div className="Login">
-      {loginOk && <Navigate to="/customer/products" />}
-      {redirect && <Navigate to="/register" />}
+      { loginOk && <Navigate to="/customer/products" /> }
+      { redirect && <Navigate to="/register" /> }
       <form>
         <input
           type="text"
@@ -61,3 +70,8 @@ function Login() {
 }
 
 export default Login;
+
+/*
+zebirita@email.com
+$#zebirita#$
+*/
