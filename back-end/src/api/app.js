@@ -4,7 +4,9 @@ const { registerRoute,
     loginRoute,
     custumerRoute,
     salesRoute,
-    salesProductsRoute } = require('../routes/index');
+    salesProductsRoute,
+    usersRoute,
+} = require('../routes/index');
 const { uniqueConstraintError } = require('../middlewares/errorMiddleware');
 
 const app = express();
@@ -16,6 +18,7 @@ app.use('/login', loginRoute);
 app.use('/custumer', custumerRoute);
 app.use('/sales', salesRoute);
 app.use('/salesProducts', salesProductsRoute);
+app.use('/users', usersRoute);
 
 app.use(uniqueConstraintError);
 
