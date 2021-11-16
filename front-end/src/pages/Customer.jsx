@@ -1,12 +1,14 @@
 import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-// import { Navigate } from 'react-router-dom';
 import Context from '../context/Context';
 import api from '../api/index';
 import CatalogProducts from '../components/CatalogProducts';
+import './Customer.css';
 
 function Customer() {
   const { userEmail, userData, setUserData } = useContext(Context);
+  const navegate = useNavigate();
 
   const getUserData = async (email) => {
     try {
@@ -30,9 +32,16 @@ function Customer() {
   }, []);
 
   return (
-    <div className="Customer">
+    <div className="customer">
       <NavBar />
       <CatalogProducts />
+      <button
+        type="button"
+        onClick={ () => navegate('/customer/checkout') }
+        data-testid="customer_products__button-cart"
+      >
+        Ver Carrinho
+      </button>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import api from '../api/index';
 import Context from '../context/Context';
-import ProdutsCard from './ProdutsCard';
+import ProdutsCard from './ProductsCard';
+import './CatalogProducts.css';
 
 export default function CatalogProducts() {
   const { setQuantityProducs } = useContext(Context);
@@ -34,7 +35,7 @@ export default function CatalogProducts() {
     <div>
       { isLoading ? <p>Loading....</p>
         : (
-          <div style={ { display: 'flex', flexWrap: 'wrap' } }>
+          <div id="catalog-div">
             { products.map((product) => (<ProdutsCard
               key={ product.id }
               product={ product }
