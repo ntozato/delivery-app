@@ -15,8 +15,8 @@ export default function CatalogProducts() {
       const { data: allProducts } = await api.getAllProduts();
 
       const tempQuant = {};
-      allProducts.forEach(({ id, price }) => {
-        tempQuant[id] = { qtd: 0, price };
+      allProducts.forEach(({ id, price, name }) => {
+        tempQuant[id] = { id, name, qtd: 0, price };
       });
       localStorage.setItem('carrinho', JSON.stringify(tempQuant));
 

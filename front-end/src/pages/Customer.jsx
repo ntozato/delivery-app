@@ -25,7 +25,6 @@ function Customer() {
   };
 
   useEffect(() => {
-    console.log(totalPrice);
     if (!userData) {
       getUserData(userEmail);
     }
