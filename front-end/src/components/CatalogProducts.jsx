@@ -5,7 +5,7 @@ import ProdutsCard from './ProductsCard';
 import './CatalogProducts.css';
 
 export default function CatalogProducts() {
-  const { setQuantityProducs } = useContext(Context);
+  const { setQuantityProducts } = useContext(Context);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,8 +18,9 @@ export default function CatalogProducts() {
       allProducts.forEach(({ id }) => {
         tempQuant[id] = 0;
       });
+      localStorage.setItem('carrinho', JSON.stringify(tempQuant));
 
-      setQuantityProducs(tempQuant);
+      setQuantityProducts(tempQuant);
       setProducts(allProducts);
       setIsLoading(false);
     } catch (error) {
@@ -29,6 +30,7 @@ export default function CatalogProducts() {
 
   useEffect(() => {
     getAllProducts();
+    // eslint-disable-next-line
   }, []);
 
   return (

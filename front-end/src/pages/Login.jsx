@@ -8,10 +8,10 @@ function Login() {
   const { setUserEmail } = useContext(Context);
   const [isError, setIsError] = useState(false);
   const [loginOk, setLoginOk] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // const [email, setEmail] = useState('zebirita@email.com');
-  // const [password, setPassword] = useState('$#zebirita#$');
+  /*  const [email, setEmail] = useState('');
+   const [password, setPassword] = useState(''); */
+  const [email, setEmail] = useState('zebirita@email.com');
+  const [password, setPassword] = useState('$#zebirita#$');
   const [redirect, setRedirect] = useState(false);
 
   const handleClickLogin = async () => {

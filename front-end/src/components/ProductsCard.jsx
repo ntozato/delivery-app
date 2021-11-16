@@ -5,7 +5,20 @@ import './ProductsCard.css';
 
 export default function ProdutsCard({
   product: { id, name, price, url_image: urlImage } }) {
-  const { quantityProducts } = useContext(Context);
+  const { quantityProducts, setQuantityProducts } = useContext(Context);
+
+  const increaseProduct = () => {
+    const aux = { ...quantityProducts };
+    aux[id] += 1;
+    setQuantityProducts(aux);
+  };
+  const decreaseProduct = () => {
+    const aux = { ...quantityProducts };
+    if (aux[id] > 0) {
+      aux[id] -= 1;
+      setQuantityProducts(aux);
+    }
+  };
 
   return (
     <div className="product-card">
@@ -22,6 +35,7 @@ export default function ProdutsCard({
       <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
       <div>
         <button
+          onClick={ decreaseProduct }
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
         >
@@ -35,6 +49,7 @@ export default function ProdutsCard({
           value={ quantityProducts[id] }
         />
         <button
+          onClick={ increaseProduct }
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
         >
