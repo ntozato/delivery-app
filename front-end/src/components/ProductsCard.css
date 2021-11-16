@@ -1,17 +1,17 @@
 #product-card {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
   height: auto;
-  width: 150px;
-  margin: 10px;
   background-color: white;
+  margin: 10px;
+  width: 150px;
   padding: 15px;
 }
 
 img {
-  width: 100px;
   height: 100px;
+  width: 100px;
 }
 
 #quantity-input {
