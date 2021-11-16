@@ -12,6 +12,7 @@ const findUser = async ({ email: userEmail }) => {
 const getAllSellers = async () => {
   const sellers = await user.findAll({
     where: { role: 'seller' },
+    attributes: ['id', 'name'],
   });
   return sellers;
 };
