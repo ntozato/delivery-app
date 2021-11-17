@@ -25,8 +25,12 @@ const FinishOrderButton = () => {
   const navigate = useNavigate();
 
   const handleFinishOrder = async () => {
-    const { data } = await api.createSale(requestObject);
-    navigate(`/customer/orders/${data}`);
+    try {
+      const { data } = await api.createSale(requestObject);
+      navigate(`/customer/orders/${data}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (<button onClick={ handleFinishOrder } type="button">Finalizar pedido</button>);
