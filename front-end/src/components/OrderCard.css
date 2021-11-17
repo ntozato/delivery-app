@@ -1,17 +1,17 @@
 .orderCard {
   background-color: #d9e0de;
-  display: flex;
   border-radius: 5px;
-  padding: 2px;
+  display: flex;
   justify-content: space-between;
   margin: 10px;
+  padding: 2px;
 }
 
 .idOrder, .statusOrder, .dataValueOrder {
   background-color: white;
   border-radius: 5px;
-  padding: 10px;
   margin: 5px;
+  padding: 10px;
 }
 
 .statusOrder {
