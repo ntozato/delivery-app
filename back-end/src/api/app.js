@@ -7,7 +7,7 @@ const { registerRoute,
     salesProductsRoute,
     usersRoute,
 } = require('../routes/index');
-const { uniqueConstraintError } = require('../middlewares/errorMiddleware');
+const { uniqueConstraintError, genericError } = require('../middlewares/errorMiddleware');
 
 const app = express();
 app.use(express.json());
@@ -20,6 +20,6 @@ app.use('/sales', salesRoute);
 app.use('/salesProducts', salesProductsRoute);
 app.use('/users', usersRoute);
 
-app.use(uniqueConstraintError);
+app.use(uniqueConstraintError, genericError);
 
 module.exports = app;
