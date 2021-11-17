@@ -1,0 +1,29 @@
+.orderCard {
+  background-color: #d9e0de;
+  padding: 2px;
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.idOrder, .statusOrder, .dataValueOrder {
+  padding: 10px;
+  background-color: #FFFFFF;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.statusOrder {
+  width: 110px;
+}
+
+.dataValueOrder {
+  background-color: #d9e0de;
+}
+
+.dataOrder, .valueOrder {
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin: 7px;
+}
