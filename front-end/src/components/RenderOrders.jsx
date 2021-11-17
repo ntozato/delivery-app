@@ -5,15 +5,17 @@ const RenderOrders = () => {
   const { orders, setOrders } = useContext(Context);
 
   const deleteOrder = (order) => {
-    const newOrders = orders.filter((o) => o.name !== order.name);
+    const newOrders = Object.values(orders).filter((o) => o.name !== order.name);
     setOrders(newOrders);
   };
 
-  const calculateSubtotal = (quantity, price) => quantity * price;
+  const calculateSubtotal = (qtd, price) => qtd * price;
+
+  const filteredProducts = Object.values(orders).filter((product) => product.qtd > 0);
 
   return (
     <tbody>
-      {orders.map((order, index) => (
+      {filteredProducts.map((order, index) => (
         <tr key={ index + 1 }>
           <td
             data-testid={ `customer_checkout__element-order-table-item-number-
@@ -33,7 +35,7 @@ const RenderOrders = () => {
               `customer_checkout__element-order-table-quantity-${index}`
             }
           >
-            {order.quantity}
+            {order.qtd}
 
           </td>
           <td
@@ -50,7 +52,7 @@ const RenderOrders = () => {
               ${index}`
             }
           >
-            {calculateSubtotal(order.quantity, order.price)}
+            {calculateSubtotal(order.qtd, order.price)}
           </td>
           <button
             data-testid={

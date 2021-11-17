@@ -18,7 +18,8 @@ const FinishOrderButton = () => {
     status: 'Pending',
     sale_date: new Date() };
 
-  const productsArray = orders;
+  const productsArray = Object.values(orders);
+  console.log(productsArray);
 
   const requestObject = { saleData, productsArray };
 
