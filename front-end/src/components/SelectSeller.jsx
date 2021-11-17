@@ -17,7 +17,7 @@ const SelectSeller = ({ handleChange }) => {
 
   useEffect(() => {
     getAllSellers();
-  }, []);
+  }, [getAllSellers]);
 
   const renderSellers = () => sellers.map((seller) => (
     <option
@@ -30,7 +30,12 @@ const SelectSeller = ({ handleChange }) => {
   return (
     <label htmlFor="seller">
       Vendedor responsável
-      <select id="seller" name="sellerId" onChange={ handleChange }>
+      <select
+        data-testid="customer_checkout__select-seller"
+        id="seller"
+        name="sellerId"
+        onChange={ handleChange }
+      >
         {sellers.length > 0 ? renderSellers() : ''}
       </select>
     </label>

@@ -18,10 +18,9 @@ const RenderOrders = () => {
       {filteredProducts.map((order, index) => (
         <tr key={ index + 1 }>
           <td
-            data-testid={ `customer_checkout__element-order-table-item-number-
-          ${index + 1}` }
+            data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
           >
-            {index}
+            {index + 1}
           </td>
           <td
             data-testid={
@@ -48,8 +47,7 @@ const RenderOrders = () => {
           </td>
           <td
             data-testid={
-              `customer_checkout__element-order-table-sub-total-
-              ${index}`
+              `customer_checkout__element-order-table-sub-total-${index}`
             }
           >
             {calculateSubtotal(order.qtd, order.price)}
