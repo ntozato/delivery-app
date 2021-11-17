@@ -14,16 +14,42 @@
   padding: 10px;
 }
 
+.idOrder {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  /* align-self: center; */
+}
+
 .statusOrder {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   width: 110px;
+
+  /* align-self: center; */
 }
 
 .dataValueOrder {
   background-color: #d9e0de;
+  padding: 0;
 }
 
 .dataOrder, .valueOrder {
+  align-items: center;
   background-color: white;
-  margin: 7px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
   padding: 10px;
+}
+
+.dataOrder {
+  margin-bottom: 5px;
+}
+
+.valueOrder {
+  margin-top: 5px;
 }
