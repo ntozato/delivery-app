@@ -10,4 +10,6 @@ const register = (newUser) => axios.post(`${url}register`, newUser);
 
 const getAllSellers = () => axios.get(`${url}users/sellers`);
 
-export default { login, register, getDataUser, getAllSellers };
+const createSale = (requestObject) => axios.post(`${url}sales`, requestObject);
+
+export default { login, register, getDataUser, getAllSellers, createSale };

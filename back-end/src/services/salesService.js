@@ -11,6 +11,7 @@ const createSale = async (saleData, productsArray) => {
         };
         await createSalesProducts(payload);
     });
+    return id;
 };
 
 module.exports = {

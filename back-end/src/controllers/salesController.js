@@ -3,8 +3,8 @@ const rescue = require('express-rescue');
 const service = require('../services/salesService');
 
 const createSale = rescue(async (req, res) => {
-    const { saleData, products_array } = req.body;
-    const result = await service.createSale(saleData, products_array);
+    const { saleData, productsArray } = req.body;
+    const result = await service.createSale(saleData, productsArray);
     res.status(StatusCodes.CREATED).json(result);
 });
 
