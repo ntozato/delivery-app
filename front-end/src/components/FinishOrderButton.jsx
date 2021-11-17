@@ -35,7 +35,15 @@ const FinishOrderButton = () => {
     }
   };
 
-  return (<button onClick={ handleFinishOrder } type="button">Finalizar pedido</button>);
+  return (
+    <button
+      data-testid="customer_checkout__button-submit-order"
+      onClick={ handleFinishOrder }
+      type="button"
+    >
+      Finalizar pedido
+
+    </button>);
 };
 
 export default FinishOrderButton;

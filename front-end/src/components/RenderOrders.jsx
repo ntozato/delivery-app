@@ -9,7 +9,9 @@ const RenderOrders = () => {
     setOrders(newOrders);
   };
 
-  const calculateSubtotal = (qtd, price) => qtd * price;
+  const calculateSubtotal = (qtd, price) => (
+    String((qtd * price)
+      .toFixed(2))).replace('.', ',');
 
   const filteredProducts = Object.values(orders).filter((product) => product.qtd > 0);
 
@@ -42,7 +44,7 @@ const RenderOrders = () => {
               `customer_checkout__element-order-table-unit-price-${index}`
             }
           >
-            {order.price}
+            {order.price.replace('.', ',')}
 
           </td>
           <td

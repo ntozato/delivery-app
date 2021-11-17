@@ -8,7 +8,7 @@ const TotalPrice = () => {
   const calculateTotal = () => {
     const total = allSubtotals.reduce(((acc, curr) => acc + curr), 0);
     setTotalPrice(total);
-    return total;
+    return String((total).toFixed(2)).replace('.', ',');
   };
   return (
     <div data-testid="customer_checkout__element-order-total-price">

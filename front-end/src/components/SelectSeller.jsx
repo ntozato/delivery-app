@@ -17,7 +17,8 @@ const SelectSeller = ({ handleChange }) => {
 
   useEffect(() => {
     getAllSellers();
-  }, [getAllSellers]);
+    // eslint-disable-next-line
+  }, []);
 
   const renderSellers = () => sellers.map((seller) => (
     <option

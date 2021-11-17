@@ -16,11 +16,22 @@ const DetailsAndAddress = () => {
         <SelectSeller handleChange={ handleChange } />
         <label htmlFor="address">
           Endereço
-          <input id="address" name="address" onChange={ handleChange } />
+          <input
+            data-testid="customer_checkout__input-address"
+            id="address"
+            name="address"
+            onChange={ handleChange }
+          />
         </label>
         <label htmlFor="number">
           Número
-          <input id="number" name="number" type="number" onChange={ handleChange } />
+          <input
+            data-testid="customer_checkout__input-addressNumber"
+            id="number"
+            name="number"
+            type="number"
+            onChange={ handleChange }
+          />
         </label>
       </form>
     </div>
