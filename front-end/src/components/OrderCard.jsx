@@ -5,12 +5,18 @@ import './OrderCard.css';
 function OrderCard({ order }) {
   const { id, status, data, valor } = order;
 
+  const colorStatus = {
+    PENDENTE: '#D3C63D',
+    PREPARANDO: '#86D53B',
+    ENTREGUE: '#3BD5AF',
+  };
+
   return (
     <div className="orderCard">
       <div className="idOrder">
         {id}
       </div>
-      <div className="statusOrder">
+      <div className="statusOrder" style={ { backgroundColor: colorStatus[status] } }>
         {status}
       </div>
       <div className="dataValueOrder">
@@ -18,7 +24,7 @@ function OrderCard({ order }) {
           {data}
         </div>
         <div className="valueOrder">
-          {valor}
+          {`R$ ${valor.toFixed(2)}`}
         </div>
       </div>
       {/* <p>{`${id} ${status} ${data} ${valor}`}</p> */}
