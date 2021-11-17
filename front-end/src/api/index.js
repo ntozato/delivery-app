@@ -8,6 +8,8 @@ const login = (user) => axios.post(`${url}login`, user);
 
 const getDataUser = (email) => axios.get(`${url}custumer?email=${email}`);
 
+const getAllProduts = () => axios.get(`${url}products`);
+
 const register = (newUser) => axios.post(`${url}register`, newUser);
 
 const getAllSellers = () => axios.get(`${url}users/sellers`);
@@ -18,4 +20,4 @@ const createSale = (requestObject) => axios.post(
   { headers: { authorization: token } },
 );
 
-export default { login, register, getDataUser, getAllSellers, createSale };
+export default { login, register, getDataUser, getAllSellers, createSale, getAllProduts };

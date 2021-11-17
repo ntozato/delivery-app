@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Context from '../context/Context';
+import './NavBar.css';
 
 export default function NavBar() {
   const { userData, setUserData } = useContext(Context);
@@ -8,6 +9,7 @@ export default function NavBar() {
 
   const resetLocal = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
     setUserData(false);
     navigate('/login');
   };

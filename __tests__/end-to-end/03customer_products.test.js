@@ -52,7 +52,7 @@ describe(requirement(12), () => {
 
   test("O avaliador testará os data-testids referentes aos card de cada produto",
     async () => {
-      for(const id of cardIds){
+      for (const id of cardIds) {
         await expect(page).toFindElement(
           customerProductsPage.element.card.title + `[data-testid$='-${id}']`
         );
@@ -104,7 +104,7 @@ describe(requirement(13), () => {
     await expect(page).toClickOnElement({ selector: customerProductsPage.element.navbar.links.logout });
     await expect(page).toCompareURL(`${host}/login`);
     expect((await localStorage(page, "user"))).toBeUndefined();
-  })
+  });
 });
 
 describe(requirement(14), () => {
@@ -112,7 +112,7 @@ describe(requirement(14), () => {
 
   test("O avaliador testará se os dados de cada card condizem com os dados esperados",
     async () => {
-      for(const { id, name, price, url_image: urlImage } of cards){
+      for (const { id, name, price, url_image: urlImage } of cards) {
         await expect(page).toGetTextFromElement(
           customerProductsPage.element.card.title + `[data-testid$='-${id}']`,
           name
@@ -125,8 +125,8 @@ describe(requirement(14), () => {
 
         await expect(page).toFindElement(
           customerProductsPage.img.card.bgImage +
-            `[data-testid$='-${id}']` +
-            `[src='${urlImage}']`
+          `[data-testid$='-${id}']` +
+          `[src='${urlImage}']`
         );
 
         const validateImage = await axios
@@ -173,7 +173,7 @@ describe(requirement(15), () => {
 
     await expect(page).toGetValueFromElement(
       customerProductsPage.input.card.quantity +
-        `[data-testid$='-${productId}']`,
+      `[data-testid$='-${productId}']`,
       String(quantity)
     );
   };
@@ -189,7 +189,7 @@ describe(requirement(15), () => {
 
     await expect(page).toGetValueFromElement(
       customerProductsPage.input.card.quantity +
-        `[data-testid$='-${productId}']`,
+      `[data-testid$='-${productId}']`,
       "0"
     );
   };
@@ -197,13 +197,13 @@ describe(requirement(15), () => {
   const setItem = async (productId, quantity) => {
     await expect(page).toTypeInInput(
       customerProductsPage.input.card.quantity +
-        `[data-testid$='-${productId}']`,
+      `[data-testid$='-${productId}']`,
       quantity
     );
 
     await expect(page).toVerifyIncludedValue(
       customerProductsPage.input.card.quantity +
-        `[data-testid$='-${productId}']`,
+      `[data-testid$='-${productId}']`,
       quantity
     );
   };
