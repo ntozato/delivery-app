@@ -3,7 +3,6 @@ const { createSalesProducts } = require('./salesProductsService');
 
 const createSale = async (saleData, productsArray) => {
     const { id } = await sale.create(saleData);
-    console.log(productsArray);
     const saleId = 'sale_id';
     const productId = 'product_id';
     await productsArray.map(async (product) => {
