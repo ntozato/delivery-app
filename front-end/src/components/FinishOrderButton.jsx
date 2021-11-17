@@ -10,16 +10,17 @@ const FinishOrderButton = () => {
     orders,
     userData: { id } } = useContext(Context);
 
-  const saleData = { user_id: id,
-    seller_id: sellerId,
+  const saleData = {
+    user_id: id,
+    seller_id: Number(sellerId),
     total_price: totalPrice,
     delivery_address: address,
     delivery_number: number,
     status: 'Pending',
     sale_date: new Date() };
 
-  const productsArray = Object.values(orders);
-  console.log(productsArray);
+  const unfilteredProducts = Object.values(orders);
+  const productsArray = unfilteredProducts.filter((product) => product.qtd > 0);
 
   const requestObject = { saleData, productsArray };
 
