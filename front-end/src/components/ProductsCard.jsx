@@ -6,14 +6,14 @@ import './ProductsCard.css';
 export default function ProdutsCard({
   product: { id, name, price, url_image: urlImage } }) {
   const {
-    quantityProducts,
-    setQuantityProducts,
+    orders,
+    setOrders,
     setTotalPrice } = useContext(Context);
 
   const [quantityCard, setQuantityCard] = useState(0);
 
   useEffect(() => {
-    const aux = { ...quantityProducts };
+    const aux = { ...orders };
     aux[id].qtd = Number(quantityCard);
     localStorage.setItem('carrinho', JSON.stringify(aux));
     const keysProducts = Object.keys(aux);
@@ -28,16 +28,16 @@ export default function ProdutsCard({
   };
 
   const increaseProduct = () => {
-    const aux = { ...quantityProducts };
+    const aux = { ...orders };
     aux[id].qtd += 1;
-    setQuantityProducts(aux);
+    setOrders(aux);
     updateTotalPrice.add();
   };
   const decreaseProduct = () => {
-    const aux = { ...quantityProducts };
+    const aux = { ...orders };
     if (aux[id].qtd > 0) {
       aux[id].qtd -= 1;
-      setQuantityProducts(aux);
+      setOrders(aux);
       updateTotalPrice.remove();
     }
   };

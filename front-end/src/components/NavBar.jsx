@@ -5,13 +5,13 @@ import './NavBar.css';
 
 export default function NavBar() {
   const { userData, setUserData } = useContext(Context);
-  const navegate = useNavigate();
+  const navigate = useNavigate();
 
   const resetLocal = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('carrinho');
     setUserData(false);
-    navegate('/login');
+    navigate('/login');
   };
 
   return (

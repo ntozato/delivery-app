@@ -5,6 +5,8 @@ import Raiz from './pages/Raiz';
 import Login from './pages/Login';
 import RegisterScreen from './pages/RegisterScreen';
 import Customer from './pages/Customer';
+import Checkout from './pages/Checkout';
+import DetailOrder from './pages/DetailOrder';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route exact path="/login" element={ <Login /> } />
         <Route exact path="/register" element={ <RegisterScreen /> } />
         <Route exact path="/customer/products" element={ <Customer /> } />
+        <Route exact path="/customer/orders/:id" element={ <DetailOrder /> } />
+        <Route exact path="/customer/checkout" element={ <Checkout /> } />
       </Routes>
     </div>
   );

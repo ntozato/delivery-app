@@ -7,7 +7,7 @@ const createUser = async (payload) => {
   const { name, email, password } = payload;
   const [userData, created] = await user.findOrCreate({
     where: { name, email },
-    defaults: { password: cryptoPassword(password) },
+    defaults: { password: cryptoPassword(password), role: 'customer' },
   });
   // retornei em forma de objeto pq fica mais claro
   return { userData, created };
