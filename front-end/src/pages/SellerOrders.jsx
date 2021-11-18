@@ -2,39 +2,52 @@ import React, { useState, useEffect, useContext } from 'react';
 // import { Navigate } from 'react-router-dom';
 import Context from '../context/Context';
 import NavBar from '../components/NavBar';
-import OrderCard from '../components/OrderCard';
+import SellerOrderCard from '../components/SellerOrderCard';
 import api from '../api/index';
-import './Orders.css';
+import './SellerOrders.css';
 
-function Orders() {
-  const { userData } = useContext(Context);
+function SellerOrders() {
+  const { userData, setUserData, userEmail } = useContext(Context);
 
   const [orders, setOrders] = useState([]);
 
   const getOrders = async () => {
     // const localOrders = JSON.parse(localStorage.getItem('orders'));
     try {
+      console.log(userData);
       const { data: sales } = await api.getSalesByUser(userData.id, userData.role);
-      // console.log(sales);
+      console.log(sales);
       setOrders(sales);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getUserData = async () => {
+    try {
+      const { data: user } = await api.getDataUser(userEmail);
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      user.token = token;
+      localStorage.setItem('user', JSON.stringify(user));
+
+      setUserData(user);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    getUserData();
     getOrders();
     // eslint-disable-next-line
   }, []);
 
   return (
-    <div className="Orders">
+    <div className="SellerOrders">
       <NavBar />
-      <h1 className="title">Meu Pedidos</h1>
       <main className="CatalogOrdes">
         {
           orders.map((order) => (
-            <OrderCard key={ order.id } order={ order } />
+            <SellerOrderCard key={ order.id } order={ order } />
           ))
         }
       </main>
@@ -42,4 +55,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default SellerOrders;

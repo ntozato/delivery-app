@@ -5,12 +5,13 @@ import { loginIsDisabled } from '../helpers/validations';
 import Context from '../context/Context';
 
 function Login() {
-  const { setUserEmail } = useContext(Context);
+  const { setUserEmail, setUserData } = useContext(Context);
   const [isError, setIsError] = useState(false);
   const [loginOk, setLoginOk] = useState(false);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userRole, setUserRole] = useState('');
 
   const [redirect, setRedirect] = useState(false);
 
@@ -22,6 +23,9 @@ function Login() {
 
   const handleClickLogin = async () => {
     try {
+      const { data } = await api.getDataUser(email);
+      setUserData(data);
+      setUserRole(data.role);
       await api.login({ email, password }).then(({ data: token }) => {
         localStorage.setItem('user', JSON.stringify({ token }));
         setUserEmail(email);
@@ -35,10 +39,20 @@ function Login() {
 
   return (
     <div className="Login">
-      { loginOk && <Navigate to="/customer/products" /> }
+      { loginOk
+        && <Navigate
+          to={
+            userRole === 'customer'
+              ? '/customer/products' : '/seller/orders'
+          }
+        /> }
       { redirect && <Navigate to="/register" /> }
       <form>
         <p>zebirita@email.com</p>
+        <p>$#zebirita#$</p>
+
+        <p>fulana@deliveryapp.com</p>
+        <p>fulana@123</p>
         <input
           type="text"
           placeholder="email@trybeer.com.br"
