@@ -4,6 +4,7 @@ import Context from '../context/Context';
 import NavBar from '../components/NavBar';
 import OrderCard from '../components/OrderCard';
 import api from '../api/index';
+import './Orders.css';
 
 function Orders() {
   const { userData } = useContext(Context);
@@ -29,7 +30,7 @@ function Orders() {
   return (
     <div className="Orders">
       <NavBar />
-      <h1>Meu Pedidos</h1>
+      <h1 className="title">Meu Pedidos</h1>
       <main className="CatalogOrdes">
         {
           orders.map((order) => (

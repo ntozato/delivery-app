@@ -8,18 +8,16 @@ function Login() {
   const { setUserEmail } = useContext(Context);
   const [isError, setIsError] = useState(false);
   const [loginOk, setLoginOk] = useState(false);
-  const [email, setEmail] = useState('zebirita@email.com');
-  const [password, setPassword] = useState('$#zebirita#$');
-  /*
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  */
+
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) setLoginOk(true);
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const handleClickLogin = async () => {
@@ -40,12 +38,14 @@ function Login() {
       { loginOk && <Navigate to="/customer/products" /> }
       { redirect && <Navigate to="/register" /> }
       <form>
+        <p>zebirita@email.com</p>
         <input
           type="text"
           placeholder="email@trybeer.com.br"
           data-testid="common_login__input-email"
           onChange={ (e) => setEmail(e.target.value) }
         />
+        <p>$#zebirita#$</p>
         <input
           type="password"
           placeholder="*****"

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import formatId from '../helpers/formatId';
 import './OrderCard.css';
@@ -24,27 +25,30 @@ function OrderCard({ order }) {
         className="idOrder"
         data-testid={ `customer_orders__element-order-id-${id}` }
       >
-        {formatId(id)}
+        { formatId(id) }
       </div>
       <div
         className="statusOrder"
         style={ { backgroundColor: colorStatus[status] } }
         data-testid={ `customer_orders__element-delivery-status-${id}` }
       >
-        {status}
+        { status }
       </div>
       <div className="dateValueOrder">
         <div
           className="dateOrder"
           data-testid={ `customer_orders__element-order-date-${id}` }
         >
-          {date}
+          { moment(date).format('DD/MM/YYYY') }
         </div>
         <div
           className="valueOrder"
           data-testid={ `customer_orders__element-card-price-${id}` }
         >
-          {`R$ ${price}`}
+          { 'R$ ' }
+          <p data-testid={ `customer_orders__element-card-price-${id}` }>
+            { price.replace('.', ',') }
+          </p>
         </div>
       </div>
     </button>
