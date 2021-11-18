@@ -8,6 +8,13 @@ const createSale = rescue(async (req, res) => {
     res.status(StatusCodes.CREATED).json(result);
 });
 
+const getSale = rescue(async (req, res) => {
+    const { id } = req.params;
+    const sale = await service.getSale(Number(id));
+    return res.status(StatusCodes.OK).json(sale);
+});
+
 module.exports = {
     createSale,
+    getSale,
 };

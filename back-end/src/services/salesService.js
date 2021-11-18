@@ -1,4 +1,4 @@
-const { sale } = require('../database/models');
+const { sale, user } = require('../database/models');
 const { createSalesProducts } = require('./salesProductsService');
 
 const createSale = async (saleData, productsArray) => {
@@ -14,8 +14,18 @@ const createSale = async (saleData, productsArray) => {
     return id;
 };
 
+const getSale = async (id) => {
+    try {
+        const result = await sale.findOne({ where: { id } });
+    return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     createSale,
+    getSale,
 };
 
 // refatorar posteriormente para transação atômica (transaction)
