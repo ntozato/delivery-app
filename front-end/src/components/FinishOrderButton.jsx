@@ -16,8 +16,10 @@ const FinishOrderButton = () => {
     total_price: totalPrice,
     delivery_address: address,
     delivery_number: number,
-    status: 'Pending',
+    status: 'Pendente',
     sale_date: new Date() };
+
+  const { token } = JSON.parse(localStorage.getItem('user')) || '';
 
   const unfilteredProducts = Object.values(orders);
   const productsArray = unfilteredProducts.filter((product) => product.qtd > 0);
@@ -28,7 +30,7 @@ const FinishOrderButton = () => {
 
   const handleFinishOrder = async () => {
     try {
-      const { data } = await api.createSale(requestObject);
+      const { data } = await api.createSale(requestObject, token);
       navigate(`/customer/orders/${data}`);
     } catch (error) {
       console.log(error);
