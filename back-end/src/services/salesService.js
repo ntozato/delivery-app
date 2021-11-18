@@ -17,14 +17,11 @@ const createSale = async (saleData, productsArray) => {
 const getSale = async (id) => {
     try {
         const result = await sale.findOne({ where: { id },
-        // attributes: {
-        //     exclude: ['sale_id'],
-        //       },
-        // include: [{
-        //     model: product,
-        //     as: 'products',
-        //     through: { attributes: ['quantity'] },
-        // }],
+        include: [{
+            model: product,
+            as: 'products',
+            through: { attributes: ['quantity'] },
+        }],
             });
     return result;
     } catch (error) {

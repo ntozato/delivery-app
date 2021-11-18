@@ -10,17 +10,17 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
   }, { timestamps: false });
 
-  // Sale.associate = (models) => {
-  //   models.sale.belongsTo(models.user, {
-  //     as: 'users',
-  //     foreignKey: 'user_id',
-  //   });
+  Sale.associate = (models) => {
+    models.sale.belongsTo(models.user, {
+      as: 'users',
+      foreignKey: 'user_id',
+    });
 
   //   models.sale.hasMany(models.salesProduct, {
   //     as: 'salesProducts',
   //     foreignKey: 'sale_id',
   //   })
-  // };
+  };
 
 
   return Sale;
