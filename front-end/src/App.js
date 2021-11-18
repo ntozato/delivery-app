@@ -8,6 +8,7 @@ import Customer from './pages/Customer';
 import Orders from './pages/Orders';
 import Checkout from './pages/Checkout';
 import DetailOrder from './pages/DetailOrder';
+import SellerOrders from './pages/SellerOrders';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <Route exact path="/register" element={ <RegisterScreen /> } />
         <Route exact path="/customer/products" element={ <Customer /> } />
         <Route exact path="/customer/orders" element={ <Orders /> } />
+        <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/customer/orders/:id" element={ <DetailOrder /> } />
+        <Route exact path="/seller/orders/:id" element={ <DetailOrder /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
       </Routes>
     </div>

@@ -6,7 +6,7 @@ const createSale = async (saleData, productsArray) => {
   const saleId = 'sale_id';
   const productId = 'product_id';
   await productsArray.map(async (product) => {
-    const payload = { 
+    const payload = {
       [saleId]: id, [productId]: product.id, quantity: product.qtd,
     };
     await createSalesProducts(payload);
@@ -14,19 +14,29 @@ const createSale = async (saleData, productsArray) => {
   return id;
 };
 
-const allSalesByUser = async (id) => {
+const allSalesByUser = async (id, role) => {
   // console.log('serviceSales', id);
-  const userId = 'user_id';
+  let userId = '';
+  if (role === 'seller') {
+    userId = 'seller_id';
+  } else {
+    userId = 'user_id';
+  }
   const sales = await sale.findAll({
     where: { [userId]: id },
-    attributes: ['id', 'total_price', 'sale_date', 'status'],
+    attributes: ['id',
+      'total_price',
+      'sale_date',
+      'status',
+      'delivery_address',
+      'delivery_number'],
   });
   return sales;
 };
 
 module.exports = {
-    createSale,
-    allSalesByUser,
+  createSale,
+  allSalesByUser,
 };
 
 // refatorar posteriormente para transação atômica (transaction)
