@@ -14,10 +14,20 @@ const register = (newUser) => axios.post(`${url}register`, newUser);
 
 const getAllSellers = () => axios.get(`${url}users/sellers`);
 
+const getSalesByUser = (id) => axios.get(`${url}sales/user?id=${id}`);
+
 const createSale = (requestObject, token) => axios.post(
   `${url}sales`,
   requestObject,
   { headers: { authorization: token } },
 );
 
-export default { login, register, getDataUser, getAllSellers, createSale, getAllProduts };
+export default {
+  login,
+  register,
+  getDataUser,
+  getAllSellers,
+  createSale,
+  getAllProduts,
+  getSalesByUser,
+};
