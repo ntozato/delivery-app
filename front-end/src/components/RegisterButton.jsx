@@ -5,7 +5,7 @@ import api from '../api';
 import { registerIsDisabled } from '../helpers/validations';
 
 const RegisterButton = () => {
-  const { registerData } = useContext(Context);
+  const { registerData, setUserData } = useContext(Context);
   const [redirect, setRedirect] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -13,7 +13,18 @@ const RegisterButton = () => {
     try {
       const result = await api.register(registerData);
       if (result.statusText === 'Created') {
-        setRedirect(!redirect);
+        try {
+          console.log('nao chegou');
+          await api.login(
+            { email: registerData.email, password: registerData.password },
+          ).then(({ data: token }) => {
+            localStorage.setItem('user', JSON.stringify({ token }));
+            setUserData({ token, ...result.data });
+            setRedirect(!redirect);
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }
     } catch (error) {
       setIsError(!isError);

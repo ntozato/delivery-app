@@ -5,7 +5,7 @@ import ProdutsCard from './ProductsCard';
 import './CatalogProducts.css';
 
 export default function CatalogProducts() {
-  const { setQuantityProducts } = useContext(Context);
+  const { setOrders } = useContext(Context);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +20,7 @@ export default function CatalogProducts() {
       });
       localStorage.setItem('carrinho', JSON.stringify(tempQuant));
 
-      setQuantityProducts(tempQuant);
+      setOrders(tempQuant);
       setProducts(allProducts);
       setIsLoading(false);
     } catch (error) {

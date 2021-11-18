@@ -5,13 +5,13 @@ import './NavBar.css';
 
 export default function NavBar() {
   const { userData, setUserData } = useContext(Context);
-  const navegate = useNavigate();
+  const navigate = useNavigate();
 
   const resetLocal = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('carrinho');
     setUserData(false);
-    navegate('/login');
+    navigate('/login');
   };
 
   return (
@@ -19,7 +19,7 @@ export default function NavBar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-products"
-        onClick={ () => navegate('/customer/products') }
+        onClick={ () => navigate('/customer/products') }
       >
         Produtos
       </button>
@@ -27,7 +27,7 @@ export default function NavBar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-orders"
-        onClick={ () => navegate('/customer/orders') }
+        onClick={ () => navigate('/customer/orders') }
       >
         Meus Pedidos
 

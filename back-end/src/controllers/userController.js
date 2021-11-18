@@ -7,4 +7,9 @@ const findUser = async (req, res) => {
   return res.status(200).json({ ...dataUser });
 };
 
-module.exports = { findUser };
+const getAllSellers = async (req, res) => {
+  const allSellers = await userService.getAllSellers();
+  return res.status(200).json(allSellers);
+};
+
+module.exports = { findUser, getAllSellers };
