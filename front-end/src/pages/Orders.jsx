@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 // import { Navigate } from 'react-router-dom';
-// import Context from './context/Context';
+import Context from '../context/Context';
 import NavBar from '../components/NavBar';
 import OrderCard from '../components/OrderCard';
+import api from '../api/index';
 
 function Orders() {
+  const { userData } = useContext(Context);
+
   const [orders, setOrders] = useState([]);
 
-  const getOrders = () => {
-    const localOrders = JSON.parse(localStorage.getItem('orders'));
-    setOrders(localOrders);
+  const getOrders = async () => {
+    // const localOrders = JSON.parse(localStorage.getItem('orders'));
+    try {
+      const { data: sales } = await api.getSalesByUser(userData.id);
+      // console.log(sales);
+      setOrders(sales);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

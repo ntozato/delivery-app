@@ -15,7 +15,7 @@ const createSale = async (saleData, productsArray) => {
 };
 
 const allSalesByUser = async (id) => {
-  console.log('serviceSales', id);
+  // console.log('serviceSales', id);
   const userId = 'user_id';
   const sales = await sale.findAll({
     where: { [userId]: id },

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import api from '../api';
 import { loginIsDisabled } from '../helpers/validations';
@@ -15,6 +15,12 @@ function Login() {
   const [password, setPassword] = useState('');
   */
   const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) setLoginOk(true);
+  // eslint-disable-next-line
+  }, []);
 
   const handleClickLogin = async () => {
     try {

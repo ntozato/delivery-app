@@ -1,34 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import formatId from '../helpers/formatId';
 import './OrderCard.css';
 
 function OrderCard({ order }) {
-  const { id, status, data, valor } = order;
+  const { id, status, sale_date: date, total_price: price } = order;
+  const navigate = useNavigate();
 
   const colorStatus = {
-    PENDENTE: '#D3C63D',
-    PREPARANDO: '#86D53B',
-    ENTREGUE: '#3BD5AF',
+    Pendente: '#D3C63D',
+    Preparando: '#86D53B',
+    Entregue: '#3BD5AF',
   };
 
   return (
-    <div className="orderCard">
-      <div className="idOrder">
-        {id}
+    <button
+      type="button"
+      className="orderCard"
+      onClick={ () => navigate(`/customer/orders/${id}`) }
+    >
+      <div
+        className="idOrder"
+        data-testid={ `customer_orders__element-order-id-${id}` }
+      >
+        {formatId(id)}
       </div>
-      <div className="statusOrder" style={ { backgroundColor: colorStatus[status] } }>
+      <div
+        className="statusOrder"
+        style={ { backgroundColor: colorStatus[status] } }
+        data-testid={ `customer_orders__element-delivery-status-${id}` }
+      >
         {status}
       </div>
-      <div className="dataValueOrder">
-        <div className="dataOrder">
-          {data}
+      <div className="dateValueOrder">
+        <div
+          className="dateOrder"
+          data-testid={ `customer_orders__element-order-date-${id}` }
+        >
+          {date}
         </div>
-        <div className="valueOrder">
-          {`R$ ${valor.toFixed(2)}`}
+        <div
+          className="valueOrder"
+          data-testid={ `customer_orders__element-card-price-${id}` }
+        >
+          {`R$ ${price}`}
         </div>
       </div>
-      {/* <p>{`${id} ${status} ${data} ${valor}`}</p> */}
-    </div>
+    </button>
   );
 }
 
@@ -36,8 +55,8 @@ OrderCard.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number,
     status: PropTypes.string,
-    data: PropTypes.string,
-    valor: PropTypes.number,
+    sale_date: PropTypes.string,
+    total_price: PropTypes.string,
   }).isRequired,
 };
 
