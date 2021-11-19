@@ -14,7 +14,7 @@ const register = (newUser) => axios.post(`${url}register`, newUser);
 
 const getAllSellers = () => axios.get(`${url}users/sellers`);
 
-const getSalesByUser = (id) => axios.get(`${url}sales/user?id=${id}`);
+const getSalesByUser = (id, role) => axios.get(`${url}sales/user?id=${id}&role=${role}`);
 
 const createSale = (requestObject, token) => axios.post(
   `${url}sales`,

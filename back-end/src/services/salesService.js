@@ -14,11 +14,22 @@ const createSale = async (saleData, productsArray) => {
   return id;
 };
 
-const allSalesByUser = async (id) => {
-  const userId = 'user_id';
+const allSalesByUser = async (id, role) => {
+  // console.log('serviceSales', id);
+  let userId = '';
+  if (role === 'seller') {
+    userId = 'seller_id';
+  } else {
+    userId = 'user_id';
+  }
   const sales = await sale.findAll({
     where: { [userId]: id },
-    attributes: ['id', 'total_price', 'sale_date', 'status'],
+    attributes: ['id',
+      'total_price',
+      'sale_date',
+      'status',
+      'delivery_address',
+      'delivery_number'],
   });
   return sales;
 };

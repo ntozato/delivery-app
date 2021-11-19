@@ -5,40 +5,62 @@ import { loginIsDisabled } from '../helpers/validations';
 import Context from '../context/Context';
 
 function Login() {
-  const { setUserEmail } = useContext(Context);
+  const { setUserEmail, setUserData } = useContext(Context);
   const [isError, setIsError] = useState(false);
   const [loginOk, setLoginOk] = useState(false);
 
+  // const [email, setEmail] = useState('fulana@deliveryapp.com');
+  // const [password, setPassword] = useState('fulana@123');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [userRole, setUserRole] = useState('');
 
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user) setLoginOk(true);
+    if (user) {
+      setUserData({ ...user });
+      setUserRole(user.role);
+      setLoginOk(true);
+    }
     // eslint-disable-next-line
   }, []);
 
   const handleClickLogin = async () => {
     try {
-      await api.login({ email, password }).then(({ data: token }) => {
-        localStorage.setItem('user', JSON.stringify({ token }));
+      await api.login({ email, password }).then(({ data: user }) => {
+        localStorage.setItem('user', JSON.stringify({ ...user }));
+        setUserData(user);
+        setUserRole(user.role);
         setUserEmail(email);
-        setLoginOk(true);
         setIsError(false);
+        setLoginOk(true);
       });
     } catch (error) {
+      console.log(error);
       setIsError(true);
     }
   };
 
   return (
     <div className="Login">
-      { loginOk && <Navigate to="/customer/products" /> }
+      { loginOk
+        && <Navigate
+          to={
+            userRole === 'customer'
+              ? '/customer/products' : '/seller/orders'
+          }
+        /> }
       { redirect && <Navigate to="/register" /> }
       <form>
         <p>zebirita@email.com</p>
+        <p>$#zebirita#$</p>
+
+        <p>fulana@deliveryapp.com</p>
+        <p>fulana@123</p>
         <input
           type="text"
           placeholder="email@trybeer.com.br"
