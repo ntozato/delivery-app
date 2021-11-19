@@ -15,9 +15,7 @@ const getAllSellers = async (req, res) => {
 
 const getSeller = rescue(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const seller = await userService.getSeller(id);
-  console.log(seller);
   return res.status(200).json(seller);
 });
 
