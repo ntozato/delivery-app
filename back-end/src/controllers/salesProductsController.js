@@ -8,6 +8,13 @@ const createSalesProducts = rescue(async (req, res) => {
     res.status(StatusCodes.CREATED).json(result);
 });
 
+const getSalesProducts = rescue(async (req, res) => {
+    const { id } = req.params;
+    const result = await service.getSalesProducts(id);
+    return res.status(StatusCodes.OK).json(result);
+});
+
 module.exports = {
     createSalesProducts,
+    getSalesProducts,
 };

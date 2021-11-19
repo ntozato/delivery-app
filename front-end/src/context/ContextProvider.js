@@ -9,6 +9,7 @@ const ContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(false);
   const [orders, setOrders] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
+  const [saleData, setSaleData] = useState('');
 
   const handleChange = ({ target: { value, name } }) => {
     setRegisterData({ ...registerData, [name]: value });
@@ -28,6 +29,8 @@ const ContextProvider = ({ children }) => {
     setUserData,
     totalPrice,
     setTotalPrice,
+    saleData,
+    setSaleData,
   };
 
   return (
