@@ -20,4 +20,13 @@ const createSale = (requestObject, token) => axios.post(
   { headers: { authorization: token } },
 );
 
-export default { login, register, getDataUser, getAllSellers, createSale, getAllProduts };
+const getSale = (id) => axios.get(`${url}sales/${id}`);
+
+export default {
+  login,
+  register,
+  getDataUser,
+  getAllSellers,
+  createSale,
+  getAllProduts,
+  getSale };
