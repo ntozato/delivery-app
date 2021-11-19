@@ -9,30 +9,38 @@ function Login() {
   const [isError, setIsError] = useState(false);
   const [loginOk, setLoginOk] = useState(false);
 
+  // const [email, setEmail] = useState('fulana@deliveryapp.com');
+  // const [password, setPassword] = useState('fulana@123');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const [userRole, setUserRole] = useState('');
 
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user) setLoginOk(true);
+    if (user) {
+      setUserData({ ...user });
+      setUserRole(user.role);
+      setLoginOk(true);
+    }
     // eslint-disable-next-line
   }, []);
 
   const handleClickLogin = async () => {
     try {
-      const { data } = await api.getDataUser(email);
-      setUserData(data);
-      setUserRole(data.role);
-      await api.login({ email, password }).then(({ data: token }) => {
-        localStorage.setItem('user', JSON.stringify({ token }));
+      await api.login({ email, password }).then(({ data: user }) => {
+        localStorage.setItem('user', JSON.stringify({ ...user }));
+        setUserData(user);
+        setUserRole(user.role);
         setUserEmail(email);
-        setLoginOk(true);
         setIsError(false);
+        setLoginOk(true);
       });
     } catch (error) {
+      console.log(error);
       setIsError(true);
     }
   };
