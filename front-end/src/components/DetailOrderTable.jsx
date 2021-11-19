@@ -7,13 +7,15 @@ const DetailOrderTable = () => {
   const { id } = useParams();
   const [isFetched, setIsFetched] = useState(false);
   const [saleData, setSaleData] = useState({});
-  console.log(saleData);
-
   const getSaleAndSaveInState = async () => {
     const { data } = await api.getSale(id);
-    setSaleData(data);
+    const seller = await api.getSeller(data.seller_id);
+    setSaleData({ ...data, sellerName: seller.data.name });
     setIsFetched(!isFetched);
   };
+
+  const formattedDate = () => new Date(saleData.sale_date)
+    .toLocaleString('pt-br').split(' ')[0];
 
   const renderTable = () => (
     <table>
@@ -23,8 +25,12 @@ const DetailOrderTable = () => {
           {' '}
           {formatId(id)}
         </th>
-        <th>vendedor</th>
-        <th>data</th>
+        <th>
+          P.Vend:
+          {' '}
+          {saleData.sellerName}
+        </th>
+        <th>{formattedDate()}</th>
         <th>status</th>
         <th>marcação</th>
       </tr>

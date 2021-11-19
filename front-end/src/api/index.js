@@ -22,6 +22,8 @@ const createSale = (requestObject, token) => axios.post(
 
 const getSale = (id) => axios.get(`${url}sales/${id}`);
 
+const getSeller = (id) => axios.get(`${url}users/seller/${id}`);
+
 export default {
   login,
   register,
@@ -29,4 +31,5 @@ export default {
   getAllSellers,
   createSale,
   getAllProduts,
-  getSale };
+  getSale,
+  getSeller };
