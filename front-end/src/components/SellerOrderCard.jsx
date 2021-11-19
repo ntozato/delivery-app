@@ -27,7 +27,7 @@ function SellerOrderCard({ order }) {
     >
       <div
         className="idOrder"
-        data-testid={ `selller_orders__element-order-id-${id}` }
+        data-testid={ `seller_orders__element-order-id-${id}` }
       >
         { formatId(id) }
       </div>

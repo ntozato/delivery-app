@@ -11,9 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'sale_id',
       otherKey: 'product_id'
     });
-  };
 
-  SalesProduct.associate = (models) => {
     models.product.belongsToMany(models.sale, {
       as: 'sales',
       through: SalesProduct,
@@ -21,5 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'sale_id'
     });
   };
+
   return SalesProduct;
 };

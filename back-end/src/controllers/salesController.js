@@ -14,7 +14,14 @@ const allSalesByUser = rescue(async (req, res) => {
   res.status(StatusCodes.ACCEPTED).json(sales);
 });
 
+const getSale = rescue(async (req, res) => {
+    const { id } = req.params;
+    const sale = await service.getSale(Number(id));
+    return res.status(StatusCodes.OK).json(sale);
+});
+
 module.exports = {
-  createSale,
-  allSalesByUser,
+    createSale,
+    allSalesByUser,
+    getSale,
 };

@@ -7,36 +7,36 @@ import api from '../api/index';
 import './SellerOrders.css';
 
 function SellerOrders() {
-  const { userData, setUserData, userEmail } = useContext(Context);
+  const { userData } = useContext(Context);
 
   const [orders, setOrders] = useState([]);
 
   const getOrders = async () => {
     // const localOrders = JSON.parse(localStorage.getItem('orders'));
     try {
-      console.log(userData);
+      console.log('UserData', userData);
       const { data: sales } = await api.getSalesByUser(userData.id, userData.role);
-      console.log(sales);
+      // console.log(sales);
       setOrders(sales);
     } catch (error) {
       console.log(error);
     }
   };
-  const getUserData = async () => {
-    try {
-      const { data: user } = await api.getDataUser(userEmail);
-      const { token } = JSON.parse(localStorage.getItem('user'));
-      user.token = token;
-      localStorage.setItem('user', JSON.stringify(user));
+  // const getUserData = async () => {
+  //   try {
+  //     const { data: user } = await api.getDataUser(userEmail);
+  //     const { token } = JSON.parse(localStorage.getItem('user'));
+  //     user.token = token;
+  //     localStorage.setItem('user', JSON.stringify(user));
 
-      setUserData(user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     setUserData(user);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
-    getUserData();
+    // getUserData();
     getOrders();
     // eslint-disable-next-line
   }, []);
