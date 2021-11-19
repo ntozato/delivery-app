@@ -21,7 +21,7 @@ function Customer() {
 
   return (
     <div className="customer">
-      <NavBar />
+      <NavBar firstButton="Produtos" />
       <CatalogProducts />
       <button
         disabled={ totalPrice === '0.00' }

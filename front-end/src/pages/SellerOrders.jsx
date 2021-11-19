@@ -27,7 +27,7 @@ function SellerOrders() {
 
   return (
     <div className="SellerOrders">
-      <NavBar />
+      <NavBar firstButton="Pedidos" />
       <main className="CatalogOrdes">
         {
           orders.map((order) => (

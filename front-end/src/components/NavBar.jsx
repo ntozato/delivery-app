@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Context from '../context/Context';
 import './NavBar.css';
 
-export default function NavBar() {
+export default function NavBar({ firstButton }) {
   const { userData, setUserData } = useContext(Context);
   const navigate = useNavigate();
 
@@ -14,26 +15,34 @@ export default function NavBar() {
     navigate('/login');
   };
 
+  console.log(userData);
+
   // main-group-13-feat-seller-orders
 
   return (
+
     <nav>
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-products"
         onClick={ () => navigate('/customer/products') }
       >
-        Produtos
+        { firstButton }
       </button>
+      {
+        userData.role === 'customer'
+        && (
+          <button
+            type="button"
+            data-testid="customer_products__element-navbar-link-orders"
+            onClick={ () => navigate('/customer/orders') }
+          >
+            Meus Pedidos
 
-      <button
-        type="button"
-        data-testid="customer_products__element-navbar-link-orders"
-        onClick={ () => navigate('/customer/orders') }
-      >
-        Meus Pedidos
+          </button>
+        )
 
-      </button>
+      }
 
       <p data-testid="customer_products__element-navbar-user-full-name">
         { userData.name }
@@ -49,3 +58,7 @@ export default function NavBar() {
     </nav>
   );
 }
+
+NavBar.propTypes = {
+  firstButton: PropTypes.string.isRequired,
+};
