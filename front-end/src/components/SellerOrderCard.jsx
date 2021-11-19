@@ -35,23 +35,23 @@ function SellerOrderCard({ order }) {
         <div
           className="statusOrder"
           style={ { backgroundColor: colorStatus[status] } }
-          data-testid={ `selller_orders__element-delivery-status-${id}` }
+          data-testid={ `seller_orders__element-delivery-status-${id}` }
         >
           { status }
         </div>
         <div className="dateValueOrder">
           <div
             className="dateOrder"
-            data-testid={ `selller_orders__element-order-date-${id}` }
+            data-testid={ `seller_orders__element-order-date-${id}` }
           >
             { moment(date).format('DD/MM/YYYY') }
           </div>
           <div
             className="valueOrder"
-            data-testid={ `selller_orders__element-card-price-${id}` }
+            data-testid={ `seller_orders__element-card-price-${id}` }
           >
             { 'R$ ' }
-            <p data-testid={ `selller_orders__element-card-price-${id}` }>
+            <p data-testid={ `seller_orders__element-card-price-${id}` }>
               { price.replace('.', ',') }
             </p>
           </div>
