@@ -14,7 +14,6 @@ const RegisterButton = () => {
       const result = await api.register(registerData);
       if (result.statusText === 'Created') {
         try {
-          console.log('nao chegou');
           await api.login(
             { email: registerData.email, password: registerData.password },
           ).then(({ data: token }) => {
