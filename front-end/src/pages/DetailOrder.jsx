@@ -5,8 +5,8 @@ import DetailOrderTable from '../components/DetailOrderTable';
 const DetailOrder = () => (
   <div>
     <NavBar />
-    <DetailOrderTable />
     <h3>Detalhes do pedido</h3>
+    <DetailOrderTable />
   </div>);
 
 export default DetailOrder;
