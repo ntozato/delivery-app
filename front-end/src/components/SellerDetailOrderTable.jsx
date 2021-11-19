@@ -20,7 +20,7 @@ const SellerDetailOrderTable = () => {
     const result = await api.updateSaleStatus(saleId, status);
 
     console.log(result);
-    if (result.data === 'Preparando') {
+    if (result.data === 'Preparando' || result.data === 'Em Trânsito') {
       setSaleData({ ...saleData, status: result.data });
     }
 
@@ -37,6 +37,7 @@ const SellerDetailOrderTable = () => {
       <th>
         {' '}
         <button
+          disabled={ saleData.status !== 'Pendente' }
           type="button"
           data-testid="seller_order_details__button-preparing-check"
           onClick={ () => updateStatus(id, 'Preparando') }
@@ -49,8 +50,10 @@ const SellerDetailOrderTable = () => {
       <th>
         {' '}
         <button
+          disabled={ saleData.status !== 'Preparando' }
           type="button"
           data-testid="seller_order_details__button-dispatch-check"
+          onClick={ () => updateStatus(id, 'Em Trânsito') }
         >
           SAIU PARA ENTREGA
         </button>
