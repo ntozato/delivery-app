@@ -14,8 +14,6 @@ export default function NavBar() {
     navigate('/login');
   };
 
-  // main-group-13-feat-seller-orders
-
   return (
     <nav>
       <button

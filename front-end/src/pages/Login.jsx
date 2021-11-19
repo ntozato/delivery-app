@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Navigate } from 'react-router-dom';
 import api from '../api';
 import { loginIsDisabled } from '../helpers/validations';
@@ -45,29 +46,74 @@ function Login() {
     }
   };
 
+  const urlByRole = {
+    customer: '/customer/products',
+    seller: '/seller/orders',
+    administrator: '/admin/manage',
+  };
+
   return (
     <div className="Login">
-      { loginOk
-        && <Navigate
-          to={
-            userRole === 'customer'
-              ? '/customer/products' : '/seller/orders'
-          }
-        /> }
+      { loginOk && <Navigate to={ urlByRole[userRole] } /> }
       { redirect && <Navigate to="/register" /> }
       <form>
-        <p>zebirita@email.com</p>
-        <p>$#zebirita#$</p>
+        <CopyToClipboard
+          text="zebirita@email.com"
+          onCopy={ () => console.log('copiou - zebirita@email.com') }
+        >
+          <span>zebirita@email.com</span>
+        </CopyToClipboard>
+        <br />
 
-        <p>fulana@deliveryapp.com</p>
-        <p>fulana@123</p>
+        <CopyToClipboard
+          text="$#zebirita#$"
+          onCopy={ () => console.log('copiou - $#zebirita#$') }
+        >
+          <span>$#zebirita#$</span>
+        </CopyToClipboard>
+        <br />
+        <br />
+
+        <CopyToClipboard
+          text="fulana@deliveryapp.com"
+          onCopy={ () => console.log('copiou - fulana@deliveryapp.com') }
+        >
+          <span>fulana@deliveryapp.com</span>
+        </CopyToClipboard>
+        <br />
+
+        <CopyToClipboard
+          text="fulana@123"
+          onCopy={ () => console.log('copiou - fulana@123') }
+        >
+          <span>fulana@123</span>
+        </CopyToClipboard>
+        <br />
+        <br />
+
+        <CopyToClipboard
+          text="adm@deliveryapp.com"
+          onCopy={ () => console.log('copiou - adm@deliveryapp.com') }
+        >
+          <span>adm@deliveryapp.com</span>
+        </CopyToClipboard>
+        <br />
+
+        <CopyToClipboard
+          text="--adm2@21!!--"
+          onCopy={ () => console.log('copiou - --adm2@21!!--') }
+        >
+          <span>--adm2@21!!--</span>
+        </CopyToClipboard>
+        <br />
+        <br />
+
         <input
           type="text"
           placeholder="email@trybeer.com.br"
           data-testid="common_login__input-email"
           onChange={ (e) => setEmail(e.target.value) }
         />
-        <p>$#zebirita#$</p>
         <input
           type="password"
           placeholder="*****"

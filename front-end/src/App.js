@@ -9,6 +9,7 @@ import Orders from './pages/Orders';
 import Checkout from './pages/Checkout';
 import DetailOrder from './pages/DetailOrder';
 import SellerOrders from './pages/SellerOrders';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/customer/orders/:id" element={ <DetailOrder /> } />
         <Route exact path="/seller/orders/:id" element={ <DetailOrder /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
+        <Route exact path="/admin/manage" element={ <Admin /> } />
       </Routes>
     </div>
   );
