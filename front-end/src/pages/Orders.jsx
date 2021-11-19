@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 // import { Navigate } from 'react-router-dom';
 import Context from '../context/Context';
-import NavBar from '../components/NavBar';
+import SellerNavBar from '../components/SellerNavBar';
 import OrderCard from '../components/OrderCard';
 import api from '../api/index';
 import './Orders.css';
@@ -29,7 +29,7 @@ function Orders() {
 
   return (
     <div className="Orders">
-      <NavBar />
+      <SellerNavBar />
       <h1 className="title">Meu Pedidos</h1>
       <main className="CatalogOrdes">
         {
