@@ -49,10 +49,24 @@ const getSale = async (id) => {
     }
 };
 
+const updateSaleStatus = async (id, status) => {
+  try {
+    const updatedSale = await sale.update({ status }, { where: { id } });
+
+    if (updatedSale[0] === 1) {
+      return status;
+    }
+    return updatedSale;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
     createSale,
     allSalesByUser,
     getSale,
+    updateSaleStatus,
 };
 
 // refatorar posteriormente para transação atômica (transaction)

@@ -20,8 +20,19 @@ const getSale = rescue(async (req, res) => {
     return res.status(StatusCodes.OK).json(sale);
 });
 
+const updateSaleStatus = rescue(async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  console.log(status);
+
+  const updatedSale = await service.updateSaleStatus(id, status);
+  return res.status(StatusCodes.OK).json(updatedSale);
+});
+
 module.exports = {
     createSale,
     allSalesByUser,
     getSale,
+    updateSaleStatus,
 };

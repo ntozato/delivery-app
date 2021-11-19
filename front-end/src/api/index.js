@@ -26,6 +26,8 @@ const getSale = (id) => axios.get(`${url}sales/${id}`);
 
 const getSeller = (id) => axios.get(`${url}users/seller/${id}`);
 
+const updateSaleStatus = (id, status) => axios.put(`${url}sales/${id}`, { status });
+
 export default {
   login,
   register,
@@ -35,4 +37,5 @@ export default {
   getAllProduts,
   getSalesByUser,
   getSale,
+  updateSaleStatus,
   getSeller };

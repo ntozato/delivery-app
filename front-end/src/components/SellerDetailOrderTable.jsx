@@ -16,6 +16,17 @@ const SellerDetailOrderTable = () => {
     setIsFetched(!isFetched);
   };
 
+  const updateStatus = async (saleId, status) => {
+    const result = await api.updateSaleStatus(saleId, status);
+
+    console.log(result);
+    if (result.data === 'Preparando') {
+      setSaleData({ ...saleData, status: result.data });
+    }
+
+    return result;
+  };
+
   const formattedDate = () => new Date(saleData.sale_date)
     .toLocaleString('pt-br').split(' ')[0];
 
@@ -26,9 +37,9 @@ const SellerDetailOrderTable = () => {
       <th>
         {' '}
         <button
-          disabled
           type="button"
           data-testid="seller_order_details__button-preparing-check"
+          onClick={ () => updateStatus(id, 'Preparando') }
         >
           PREPARAR PEDIDO
 
