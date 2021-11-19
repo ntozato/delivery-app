@@ -1,3 +1,4 @@
+const rescue = require('express-rescue');
 const userService = require('../services/userServices');
 
 const findUser = async (req, res) => {
@@ -12,4 +13,10 @@ const getAllSellers = async (req, res) => {
   return res.status(200).json(allSellers);
 };
 
-module.exports = { findUser, getAllSellers };
+const getSeller = rescue(async (req, res) => {
+  const { id } = req.body;
+  const seller = await userService.getSeller(id);
+  return res.status(200).json(seller);
+});
+
+module.exports = { findUser, getAllSellers, getSeller };

@@ -17,4 +17,13 @@ const getAllSellers = async () => {
   return sellers;
 };
 
-module.exports = { findUser, getAllSellers };
+const getSeller = async (id) => {
+  try {
+    const seller = await user.findOne({ where: { id, role: 'seller' }, attributes: ['name'] });
+    return seller;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { findUser, getAllSellers, getSeller };
