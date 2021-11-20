@@ -7,8 +7,9 @@ const SelectSeller = ({ handleChange }) => {
   const [sellers, setSellers] = useState([]);
   const { setDetailsAddress } = useContext(Context);
 
-  const getAllSellers = async () => {
-    const { data } = await api.getAllSellers();
+  const getAllUsers = async () => {
+    const allUsers = await api.getAllUsers();
+    const data = allUsers.data.filter((user) => user.role === 'seller');
     setSellers(data);
     setDetailsAddress(
       { address: '', number: '', sellerId: String(data[0].id) },
@@ -16,7 +17,7 @@ const SelectSeller = ({ handleChange }) => {
   };
 
   useEffect(() => {
-    getAllSellers();
+    getAllUsers();
     // eslint-disable-next-line
   }, []);
 
@@ -25,7 +26,7 @@ const SelectSeller = ({ handleChange }) => {
       value={ seller.id }
       key={ seller.id }
     >
-      {seller.name}
+      { seller.name }
     </option>));
 
   return (
@@ -37,7 +38,7 @@ const SelectSeller = ({ handleChange }) => {
         name="sellerId"
         onChange={ handleChange }
       >
-        {sellers.length > 0 ? renderSellers() : ''}
+        { sellers.length > 0 ? renderSellers() : '' }
       </select>
     </label>
   );

@@ -1,0 +1,50 @@
+.containerBoardAllUsers {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 80%;
+}
+
+.title {
+  align-self: center;
+}
+
+.divUsers {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  text-align: center;
+  width: 70%;
+}
+
+.userId, .userName, .userEmail, .userRole, .userButton {
+  color: black;
+  height: 100%;
+  margin: 10px 0;
+}
+
+.userId {
+  background-color: #2fc18c;
+  flex: 1;
+}
+
+.userName {
+  background-color: #eaf1ef;
+  flex: 4;
+}
+
+.userEmail {
+  background-color: #036b52;
+  flex: 4;
+}
+
+.userRole {
+  background-color: #421981;
+  flex: 2;
+}
+
+.userButton {
+  background-color: #056cf9;
+  border: 1px solid #056cf9;
+  flex: 1;
+}

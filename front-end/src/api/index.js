@@ -12,7 +12,7 @@ const getAllProduts = () => axios.get(`${url}products`);
 
 const register = (newUser) => axios.post(`${url}register`, newUser);
 
-const getAllSellers = () => axios.get(`${url}users/sellers`);
+const getAllUsers = () => axios.get(`${url}users/sellers`);
 
 const getSalesByUser = (id, role) => axios.get(`${url}sales/user?id=${id}&role=${role}`);
 
@@ -30,9 +30,10 @@ export default {
   login,
   register,
   getDataUser,
-  getAllSellers,
+  getAllUsers,
   createSale,
   getAllProduts,
   getSalesByUser,
   getSale,
-  getSeller };
+  getSeller,
+};

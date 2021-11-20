@@ -27,25 +27,25 @@ const DetailOrderTable = () => {
         <tr>
           <th data-testid="customer_order_details__element-order-details-label-order-id">
             PEDIDO
-            {' '}
-            {formatId(id)}
+            { ' ' }
+            { formatId(id) }
           </th>
           <th
             data-testid="customer_order_details__element-order-details-label-seller-name"
           >
             P.Vend:
-            {' '}
-            {saleData.sellerName}
+            { ' ' }
+            { saleData.sellerName }
           </th>
           <th
             data-testid="customer_order_details__element-order-details-label-order-date"
           >
-            {formattedDate()}
+            { formattedDate() }
           </th>
           <th
             data-testid={ a }
           >
-            {saleData.status}
+            { saleData.status }
           </th>
           <th>
             <button
@@ -61,7 +61,7 @@ const DetailOrderTable = () => {
         <RenderOrderDetails />
       </table>
       <div data-testid="customer_order_details__element-order-total-price">
-        {`Total: R$ ${saleData.total_price.replace('.', ',')}`}
+        { `Total: R$ ${saleData.total_price.replace('.', ',')}` }
       </div>
     </div>
   );
