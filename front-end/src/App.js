@@ -8,6 +8,7 @@ import Customer from './pages/Customer';
 import Orders from './pages/Orders';
 import Checkout from './pages/Checkout';
 import DetailOrder from './pages/DetailOrder';
+import SellerDetailOrder from './pages/SellerDetailOrder';
 import SellerOrders from './pages/SellerOrders';
 import Admin from './pages/Admin';
 
@@ -22,7 +23,7 @@ function App() {
         <Route exact path="/customer/orders" element={ <Orders /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/customer/orders/:id" element={ <DetailOrder /> } />
-        <Route exact path="/seller/orders/:id" element={ <DetailOrder /> } />
+        <Route exact path="/seller/orders/:id" element={ <SellerDetailOrder /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/admin/manage" element={ <Admin /> } />
       </Routes>

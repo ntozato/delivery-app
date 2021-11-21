@@ -16,6 +16,16 @@ const DetailOrderTable = () => {
     setIsFetched(!isFetched);
   };
 
+  const updateStatus = async (saleId, status) => {
+    const result = await api.updateSaleStatus(saleId, status);
+
+    if (result.data === 'Entregue') {
+      setSaleData({ ...saleData, status: result.data });
+    }
+
+    return result;
+  };
+
   const formattedDate = () => new Date(saleData.sale_date)
     .toLocaleString('pt-br').split(' ')[0];
 
@@ -49,9 +59,10 @@ const DetailOrderTable = () => {
           </th>
           <th>
             <button
-              disabled
+              disabled={ saleData.status !== 'Em Trânsito' }
               type="button"
               data-testid="customer_order_details__button-delivery-check"
+              onClick={ () => updateStatus(id, 'Entregue') }
             >
               MARCAR COMO ENTREGUE
 
