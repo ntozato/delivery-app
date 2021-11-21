@@ -39,4 +39,4 @@ export default {
   getSale,
   getSeller,
   updateSaleStatus,
-  };
+};
