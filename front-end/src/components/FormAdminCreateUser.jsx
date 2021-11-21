@@ -1,16 +1,17 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import api from '../api/index';
 import { registerIsDisabled } from '../helpers/validations';
 import Context from '../context/Context';
 
-export default function FormAdminCreateUser() {
+export default function FormAdminCreateUser({ serError }) {
   const dafaultUserData = {
     name: '',
     email: '',
     password: '',
     role: 'seller',
   };
-  const { isNewUser, setisNewUser } = useContext(Context);
+  const { isNewUser, setisNewUser, userData } = useContext(Context);
   const [newUserData, setNewUserData] = useState(dafaultUserData);
 
   const handleChangeNewUser = ({ target: { name, value } }) => {
@@ -18,14 +19,15 @@ export default function FormAdminCreateUser() {
     aux[name] = value;
     setNewUserData(aux);
   };
-
   const handleCLickSendNewUser = async () => {
     try {
-      await api.register(newUserData);
+      await api.registerAdmin(newUserData, userData.token);
       setNewUserData(dafaultUserData);
       setisNewUser(!isNewUser);
+      serError(false);
     } catch (error) {
       console.log(error);
+      serError(true);
     }
   };
 
@@ -64,7 +66,7 @@ export default function FormAdminCreateUser() {
         value={ newUserData.role }
         onChange={ (e) => handleChangeNewUser(e) }
       >
-        <option value="seller" selected>Vendedor</option>
+        <option value="seller">Vendedor</option>
         <option value="customer">Cliente</option>
         <option value="administrator">Administrador</option>
       </select>
@@ -80,3 +82,7 @@ export default function FormAdminCreateUser() {
     </form>
   );
 }
+
+FormAdminCreateUser.propTypes = {
+  serError: PropTypes.func.isRequired,
+};

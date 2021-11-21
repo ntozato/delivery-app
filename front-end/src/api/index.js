@@ -12,6 +12,12 @@ const getAllProduts = () => axios.get(`${url}products`);
 
 const register = (newUser) => axios.post(`${url}register`, newUser);
 
+const registerAdmin = (newUser, token) => axios.post(
+  `${url}register/admin`,
+  newUser,
+  { headers: { authorization: token } },
+);
+
 const getAllUsers = () => axios.get(`${url}users/sellers`);
 
 const getSalesByUser = (id, role) => axios.get(`${url}sales/user?id=${id}&role=${role}`);
@@ -39,4 +45,5 @@ export default {
   getSale,
   getSeller,
   updateSaleStatus,
+  registerAdmin,
 };
