@@ -4,6 +4,7 @@ import formatId from '../../helpers/formatId';
 import api from '../../api/index';
 import Context from '../../context/Context';
 import SellerRenderOrderDetails from '../SellerRenderOrderDetails';
+import socketClient from '../../helpers/socketClient';
 import './style.css';
 
 const SellerDetailOrderTable = () => {
@@ -20,10 +21,11 @@ const SellerDetailOrderTable = () => {
   const updateStatus = async (saleId, status) => {
     const result = await api.updateSaleStatus(saleId, status);
 
-    console.log(result);
     if (result.data === 'Preparando' || result.data === 'Em Trânsito') {
       setSaleData({ ...saleData, status: result.data });
     }
+
+    socketClient.emit('updateStatus');
 
     return result;
   };
@@ -103,6 +105,8 @@ const SellerDetailOrderTable = () => {
 
   useEffect(() => {
     getSaleAndSaveInState();
+    socketClient.on('updateStatus', () => {
+    });
     // eslint-disable-next-line
   }, []);
 

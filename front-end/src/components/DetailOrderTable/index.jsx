@@ -4,6 +4,7 @@ import formatId from '../../helpers/formatId';
 import api from '../../api';
 import Context from '../../context/Context';
 import RenderOrderDetails from '../RenderOrderDetails';
+import socketClient from '../../helpers/socketClient';
 import './style.css';
 
 const DetailOrderTable = () => {
@@ -23,7 +24,7 @@ const DetailOrderTable = () => {
     if (result.data === 'Entregue') {
       setSaleData({ ...saleData, status: result.data });
     }
-
+    socketClient.emit('updateStatus', 'detailOrderTable');
     return result;
   };
 
@@ -80,6 +81,10 @@ const DetailOrderTable = () => {
 
   useEffect(() => {
     getSaleAndSaveInState();
+    socketClient.on('updateStatus', (msg) => {
+      getSaleAndSaveInState();
+      console.log(msg);
+    });
     // eslint-disable-next-line
   }, []);
 
