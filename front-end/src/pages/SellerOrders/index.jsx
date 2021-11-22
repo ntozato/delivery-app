@@ -26,6 +26,10 @@ function SellerOrders() {
     socketClient.on('updateStatus', () => {
       getOrders();
     });
+    return () => {
+      socketClient.removeListener('updateStatu');
+      socketClient.removeAllListeners('updateStatus');
+    };
     // eslint-disable-next-line
   }, []);
 

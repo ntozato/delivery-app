@@ -4,6 +4,7 @@ import OrderCard from '../../components/OrderCard';
 import api from '../../api/index';
 import './style.css';
 import NavBar from '../../components/NavBar';
+import socketClient from '../../helpers/socketClient';
 
 function CustomerOrders() {
   const { userData } = useContext(Context);
@@ -21,6 +22,13 @@ function CustomerOrders() {
 
   useEffect(() => {
     getOrders();
+    socketClient.on('updateStatus', () => {
+      getOrders();
+    });
+    return () => {
+      socketClient.removeListener('updateStatu');
+      socketClient.removeAllListeners('updateStatus');
+    };
     // eslint-disable-next-line
   }, []);
 

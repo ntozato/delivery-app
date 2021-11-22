@@ -24,7 +24,6 @@ const SellerDetailOrderTable = () => {
     if (result.data === 'Preparando' || result.data === 'Em Trânsito') {
       setSaleData({ ...saleData, status: result.data });
     }
-
     socketClient.emit('updateStatus');
 
     return result;
@@ -106,7 +105,13 @@ const SellerDetailOrderTable = () => {
   useEffect(() => {
     getSaleAndSaveInState();
     socketClient.on('updateStatus', () => {
+      getSaleAndSaveInState();
+      // console.log(msg);
     });
+    return () => {
+      socketClient.removeListener('updateStatu');
+      socketClient.removeAllListeners('updateStatus');
+    };
     // eslint-disable-next-line
   }, []);
 

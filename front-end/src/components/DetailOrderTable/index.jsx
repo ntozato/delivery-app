@@ -81,10 +81,14 @@ const DetailOrderTable = () => {
 
   useEffect(() => {
     getSaleAndSaveInState();
-    socketClient.on('updateStatus', (msg) => {
+    socketClient.on('updateStatus', () => {
       getSaleAndSaveInState();
-      console.log(msg);
+      // console.log(msg);
     });
+    return () => {
+      socketClient.removeListener('updateStatu');
+      socketClient.removeAllListeners('updateStatus');
+    };
     // eslint-disable-next-line
   }, []);
 
