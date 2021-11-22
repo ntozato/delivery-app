@@ -15,7 +15,6 @@ const createSale = async (saleData, productsArray) => {
 };
 
 const allSalesByUser = async (id, role) => {
-  // console.log('serviceSales', id);
   let userId = '';
   if (role === 'seller') {
     userId = 'seller_id';

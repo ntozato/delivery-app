@@ -12,10 +12,8 @@ function Orders() {
   const [orders, setOrders] = useState([]);
 
   const getOrders = async () => {
-    // const localOrders = JSON.parse(localStorage.getItem('orders'));
     try {
       const { data: sales } = await api.getSalesByUser(userData.id, userData.role);
-      // console.log(sales);
       setOrders(sales);
     } catch (error) {
       console.log(error);

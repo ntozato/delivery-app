@@ -3,6 +3,7 @@ import RenderOrders from '../components/RenderOrders';
 import TotalPrice from '../components/TotalPrice';
 import DetailsAndAddress from '../components/DetailsAndAddress';
 import FinishOrderButton from '../components/FinishOrderButton';
+// teste reloadEvaluator
 
 const Checkout = () => (
   <div>

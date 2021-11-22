@@ -8,17 +8,15 @@ const findUser = async (req, res) => {
   return res.status(200).json({ ...dataUser });
 };
 
-const getAllSellers = async (req, res) => {
-  const allSellers = await userService.getAllSellers();
+const getAllUsers = async (req, res) => {
+  const allSellers = await userService.getAllUsers();
   return res.status(200).json(allSellers);
 };
 
 const getSeller = rescue(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const seller = await userService.getSeller(id);
-  console.log(seller);
   return res.status(200).json(seller);
 });
 
-module.exports = { findUser, getAllSellers, getSeller };
+module.exports = { findUser, getAllUsers, getSeller };

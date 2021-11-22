@@ -14,31 +14,39 @@ export default function NavBar() {
     navigate('/login');
   };
 
-  // main-group-13-feat-seller-orders
+  const { role } = userData;
+  const buttonName = {
+    administrator: 'Gerenciar Usuários',
+    customer: 'Meu Pedidos',
+    seller: 'Pedidos',
+  };
 
   return (
     <nav>
       <button
         type="button"
-        data-testid="customer_products__element-navbar-link-products"
-        onClick={ () => navigate('/customer/products') }
-      >
-        Produtos
-      </button>
-
-      <button
-        type="button"
         data-testid="customer_products__element-navbar-link-orders"
-        onClick={ () => navigate('/customer/orders') }
+        onClick={ () => navigate(
+          role === 'administrator' ? '/admin/manage' : `/${role}/orders`,
+        ) }
       >
-        Meus Pedidos
-
+        { buttonName[role] }
       </button>
-
+      {
+        role === 'customer'
+        && (
+          <button
+            type="button"
+            data-testid="customer_products__element-navbar-link-products"
+            onClick={ () => navigate('/customer/products') }
+          >
+            Produtos
+          </button>
+        )
+      }
       <p data-testid="customer_products__element-navbar-user-full-name">
         { userData.name }
       </p>
-
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-logout"

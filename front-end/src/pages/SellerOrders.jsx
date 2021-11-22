@@ -12,31 +12,15 @@ function SellerOrders() {
   const [orders, setOrders] = useState([]);
 
   const getOrders = async () => {
-    // const localOrders = JSON.parse(localStorage.getItem('orders'));
     try {
-      console.log('UserData', userData);
       const { data: sales } = await api.getSalesByUser(userData.id, userData.role);
-      // console.log(sales);
       setOrders(sales);
     } catch (error) {
       console.log(error);
     }
   };
-  // const getUserData = async () => {
-  //   try {
-  //     const { data: user } = await api.getDataUser(userEmail);
-  //     const { token } = JSON.parse(localStorage.getItem('user'));
-  //     user.token = token;
-  //     localStorage.setItem('user', JSON.stringify(user));
-
-  //     setUserData(user);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   useEffect(() => {
-    // getUserData();
     getOrders();
     // eslint-disable-next-line
   }, []);
