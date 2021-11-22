@@ -25,7 +25,7 @@ const { uniqueConstraintError, genericError } = require('../middlewares/errorMid
 app.use(express.json());
 app.use(cors());
 
-require('../sockets/checkout')(io);
+require('../sockets/updateStatus')(io);
 
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
