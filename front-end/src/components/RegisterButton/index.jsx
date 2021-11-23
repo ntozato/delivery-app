@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import Context from '../../context/Context';
 import api from '../../api';
 import { registerIsDisabled } from '../../helpers/validations';
@@ -34,7 +35,8 @@ const RegisterButton = () => {
   return (
     <div>
       { redirect && <Navigate to="/customer/products" /> }
-      <button
+      <Button
+        variant={ registerIsDisabled(registerData) ? 'secondary' : 'primary' }
         data-testid="common_register__button-register"
         type="button"
         disabled={ registerIsDisabled(registerData) }
@@ -42,7 +44,7 @@ const RegisterButton = () => {
       >
         Cadastrar
 
-      </button>
+      </Button>
       { isError
         && (
           <p data-testid="common_register__element-invalid_register">
