@@ -24,12 +24,6 @@ function Customer() {
     <div className="customer">
       <NavBar />
       <CatalogProducts />
-
-      {/*  <div className="d-grid gap-2">
-  <Button variant="secondary" size="lg">
-    Block level button
-  </Button>
-</div> */}
       <div className="d-grid gap-2">
         <Button
           variant="dark"

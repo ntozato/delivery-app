@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Table, Button } from 'react-bootstrap';
 import api from '../../api/index';
 import Context from '../../context/Context';
-import './style.css';
+// import './style.css';
 
 export default function BoardAllUsers() {
   const { isNewUser } = useContext(Context);
@@ -15,48 +16,52 @@ export default function BoardAllUsers() {
     getAllUsers();
   }, [isNewUser]);
   return (
-    <div className="containerBoardAllUsers">
-      <h3 className="title">Lista de Usuários</h3>
-      { allUsers.map(({ id, name, email, role }, index) => (
-        <div key={ id } className="divUsers">
-          <p
-            className="userId"
-            data-testid={ `admin_manage__element-user-table-item-number-${index}` }
-          >
-            { id }
+    <Table striped bordered hover variant="dark" className="ml-2 mr-2">
+      <tbody>
+        { allUsers.map(({ id, name, email, role }, index) => (
+          <tr key={ id } className="divUsers">
+            <td
+              className="userId"
+              data-testid={ `admin_manage__element-user-table-item-number-${index}` }
+            >
+              { id }
 
-          </p>
-          <p
-            className="userName"
-            data-testid={ `admin_manage__element-user-table-name-${index}` }
-          >
-            { name }
+            </td>
+            <td
+              className="userName"
+              data-testid={ `admin_manage__element-user-table-name-${index}` }
+            >
+              { name }
 
-          </p>
-          <p
-            className="userEmail"
-            data-testid={ `admin_manage__element-user-table-email-${index}` }
-          >
-            { email }
+            </td>
+            <td
+              className="userEmail"
+              data-testid={ `admin_manage__element-user-table-email-${index}` }
+            >
+              { email }
 
-          </p>
-          <p
-            className="userRole"
-            data-testid={ `admin_manage__element-user-table-role-${index}` }
-          >
-            { role }
+            </td>
+            <td
+              className="userRole"
+              data-testid={ `admin_manage__element-user-table-role-${index}` }
+            >
+              { role }
 
-          </p>
-          <button
-            className="userButton"
-            data-testid={ `admin_manage__element-user-table-remove-${index}` }
-            type="button"
-          >
-            Excluir
+            </td>
+            <td>
+              <Button
+                variant="light"
+                className="userButton"
+                data-testid={ `admin_manage__element-user-table-remove-${index}` }
+                type="button"
+              >
+                Excluir
 
-          </button>
-        </div>
-      )) }
-    </div>
+              </Button>
+            </td>
+          </tr>
+        )) }
+      </tbody>
+    </Table>
   );
 }
