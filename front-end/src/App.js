@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import Raiz from './pages/Raiz';
 import Login from './pages/Login';
 import RegisterScreen from './pages/RegisterScreen';

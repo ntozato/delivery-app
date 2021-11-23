@@ -4,6 +4,7 @@ import Context from '../../context/Context';
 import SellerNavBar from '../../components/SellerNavBar';
 import SellerOrderCard from '../../components/SellerOrderCard';
 import api from '../../api/index';
+import socketClient from '../../helpers/socketClient';
 import './style.css';
 
 function SellerOrders() {
@@ -22,6 +23,13 @@ function SellerOrders() {
 
   useEffect(() => {
     getOrders();
+    socketClient.on('updateStatus', () => {
+      getOrders();
+    });
+    return () => {
+      socketClient.removeListener('updateStatu');
+      socketClient.removeAllListeners('updateStatus');
+    };
     // eslint-disable-next-line
   }, []);
 
