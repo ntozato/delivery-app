@@ -1,10 +1,10 @@
 import React from 'react';
-import SellerNavBar from '../../components/SellerNavBar';
 import SellerDetailOrderTable from '../../components/SellerDetailOrderTable';
+import NavBar from '../../components/NavBar';
 
 const SellerDetailOrder = () => (
   <div>
-    <SellerNavBar />
+    <NavBar />
     <h3>Detalhes do pedido</h3>
     <SellerDetailOrderTable />
   </div>);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 // import { Navigate } from 'react-router-dom';
 import Context from '../../context/Context';
-import SellerNavBar from '../../components/SellerNavBar';
 import SellerOrderCard from '../../components/SellerOrderCard';
 import api from '../../api/index';
 import socketClient from '../../helpers/socketClient';
 import './style.css';
+import NavBar from '../../components/NavBar';
 
 function SellerOrders() {
   const { userData } = useContext(Context);
@@ -35,7 +35,7 @@ function SellerOrders() {
 
   return (
     <div className="SellerOrders">
-      <SellerNavBar />
+      <NavBar />
       <main className="CatalogOrdes">
         {
           orders.map((order) => (
