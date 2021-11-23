@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Card, Button, FormControl } from 'react-bootstrap';
 import Context from '../../context/Context';
 import './style.css';
 
@@ -44,45 +45,52 @@ export default function ProdutsCard({
   };
 
   return (
-    <div className="product-card">
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
-        Price:
-        { `  R$ ${price.replace('.', ',')}` }
-
-      </p>
-      <img
+    <Card style={ { width: '18rem' } }>
+      <Card.Img
+        variant="top"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ name }
       />
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
-      <div>
-        <button
+      <Card.Body>
+        <Card.Title
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          { name }
+        </Card.Title>
+        <Card.Text data-testid={ `customer_products__element-card-price-${id}` }>
+          Price:
+          { `  R$ ${price.replace('.', ',')}` }
+
+        </Card.Text>
+      </Card.Body>
+      <Card.Body>
+        <Button
           onClick={ decreaseProduct }
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
         >
           -
 
-        </button>
-        <input
+        </Button>
+        <FormControl
           className="quantity-input"
           type="text"
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ quantityCard }
           onChange={ ({ target: { value } }) => setQuantityCard(value) }
         />
-        <button
+        <Button
           onClick={ increaseProduct }
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
         >
           +
 
-        </button>
-      </div>
+        </Button>
+      </Card.Body>
+    </Card>
 
-    </div>
   );
 }
 
