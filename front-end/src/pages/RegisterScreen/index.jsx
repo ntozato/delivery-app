@@ -1,45 +1,69 @@
 import React, { useContext } from 'react';
+import Form from 'react-bootstrap/Form';
 import Context from '../../context/Context';
 import RegisterButton from '../../components/RegisterButton';
+import './style.css';
 
 const RegisterScreen = () => {
   const { handleChange } = useContext(Context);
 
   return (
-    <div>
-      <form>
-        <h1>Registre sua Conta</h1>
-        <label htmlFor="name">
-          Nome
-          <input
+    <div className="registerScreen-main-div">
+      <h1>Registre sua Conta</h1>
+      <Form className="bootstrap-form">
+        <Form.Group
+          className="mb-4"
+          controlId="formBasicName"
+        >
+          <Form.Label
+            htmlFor="name"
+          >
+            Nome
+          </Form.Label>
+          <Form.Control
             name="name"
             data-testid="common_register__input-name"
-            id="name"
+            type="text"
+            placeholder="Digite seu nome"
             onChange={ handleChange }
           />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
+        </Form.Group>
+
+        <Form.Group
+          className="mb-4"
+          controlId="formBasicEmail"
+        >
+          <Form.Label htmlFor="email">
+            Email
+          </Form.Label>
+          <Form.Control
             name="email"
             data-testid="common_register__input-email"
             type="email"
+            placeholder="Digite seu email"
             id="email"
             onChange={ handleChange }
           />
-        </label>
-        <label htmlFor="password">
-          Senha
-          <input
+        </Form.Group>
+
+        <Form.Group
+          className="mb-4"
+          controlId="formBasicPassword"
+        >
+          <Form.Label htmlFor="password">
+            Senha
+          </Form.Label>
+          <Form.Control
             name="password"
             data-testid="common_register__input-password"
             type="password"
             id="password"
+            placeholder="Digite sua senha"
             onChange={ handleChange }
           />
-        </label>
+        </Form.Group>
         <RegisterButton />
-      </form>
+      </Form>
     </div>
   );
 };
