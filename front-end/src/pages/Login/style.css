@@ -1,1 +1,50 @@
-/* asdas */
+.Login {
+  background-color: antiquewhite;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.div-image {
+  flex: 2;
+}
+
+.div-image img {
+  height: 100vh;
+  width: 100%;
+}
+
+.div-form {
+  align-self: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.logo {
+  align-self: center;
+  height: 300px;
+  width: 300px;
+}
+
+.login-button {
+  background-color: coral;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: coral;
+  opacity: 80%;
+}
+
+.register-button {
+  background-color: coral;
+  border: 1px coral solid;
+}
+
+.register-button:hover {
+  background-color: coral;
+  opacity: 80%;
+}

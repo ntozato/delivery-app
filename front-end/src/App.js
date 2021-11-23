@@ -11,6 +11,7 @@ import DetailOrder from './pages/DetailOrder';
 import SellerDetailOrder from './pages/SellerDetailOrder';
 import SellerOrders from './pages/SellerOrders';
 import Admin from './pages/Admin';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

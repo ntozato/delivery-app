@@ -4,6 +4,9 @@ import { Navigate } from 'react-router-dom';
 import api from '../../api';
 import { loginIsDisabled } from '../../helpers/validations';
 import Context from '../../context/Context';
+import beerImage from '../../images/a.jpg';
+import logo from '../../images/logo.png';
+import './style.css';
 
 function Login() {
   const { setUserEmail, setUserData } = useContext(Context);
@@ -56,91 +59,107 @@ function Login() {
     <div className="Login">
       { loginOk && <Navigate to={ urlByRole[userRole] } /> }
       { redirect && <Navigate to="/register" /> }
-      <form>
-        <CopyToClipboard
-          text="zebirita@email.com"
-          onCopy={ () => console.log('copiou - zebirita@email.com') }
-        >
-          <span>zebirita@email.com</span>
-        </CopyToClipboard>
-        <br />
 
-        <CopyToClipboard
-          text="$#zebirita#$"
-          onCopy={ () => console.log('copiou - $#zebirita#$') }
-        >
-          <span>$#zebirita#$</span>
-        </CopyToClipboard>
-        <br />
-        <br />
+      <div className="div-form row">
+        <img className="logo" src={ logo } alt="Logotipo do Zé birita" />
 
-        <CopyToClipboard
-          text="fulana@deliveryapp.com"
-          onCopy={ () => console.log('copiou - fulana@deliveryapp.com') }
-        >
-          <span>fulana@deliveryapp.com</span>
-        </CopyToClipboard>
-        <br />
+        <form className="col s12">
+          <CopyToClipboard
+            text="zebirita@email.com"
+            onCopy={ () => console.log('copiou - zebirita@email.com') }
+          >
+            <span>zebirita@email.com</span>
+          </CopyToClipboard>
+          <br />
 
-        <CopyToClipboard
-          text="fulana@123"
-          onCopy={ () => console.log('copiou - fulana@123') }
-        >
-          <span>fulana@123</span>
-        </CopyToClipboard>
-        <br />
-        <br />
+          <CopyToClipboard
+            text="$#zebirita#$"
+            onCopy={ () => console.log('copiou - $#zebirita#$') }
+          >
+            <span>$#zebirita#$</span>
+          </CopyToClipboard>
+          <br />
+          <br />
 
-        <CopyToClipboard
-          text="adm@deliveryapp.com"
-          onCopy={ () => console.log('copiou - adm@deliveryapp.com') }
-        >
-          <span>adm@deliveryapp.com</span>
-        </CopyToClipboard>
-        <br />
+          <CopyToClipboard
+            text="fulana@deliveryapp.com"
+            onCopy={ () => console.log('copiou - fulana@deliveryapp.com') }
+          >
+            <span>fulana@deliveryapp.com</span>
+          </CopyToClipboard>
+          <br />
 
-        <CopyToClipboard
-          text="--adm2@21!!--"
-          onCopy={ () => console.log('copiou - --adm2@21!!--') }
-        >
-          <span>--adm2@21!!--</span>
-        </CopyToClipboard>
-        <br />
-        <br />
+          <CopyToClipboard
+            text="fulana@123"
+            onCopy={ () => console.log('copiou - fulana@123') }
+          >
+            <span>fulana@123</span>
+          </CopyToClipboard>
+          <br />
+          <br />
 
-        <input
-          type="text"
-          placeholder="email@trybeer.com.br"
-          data-testid="common_login__input-email"
-          onChange={ (e) => setEmail(e.target.value) }
-        />
-        <input
-          type="password"
-          placeholder="*****"
-          data-testid="common_login__input-password"
-          onChange={ (e) => setPassword(e.target.value) }
-        />
-        <button
-          type="button"
-          disabled={ loginIsDisabled({ email, password }) }
-          onClick={ handleClickLogin }
-          data-testid="common_login__button-login"
-        >
-          LOGIN
-        </button>
-        <button
-          type="button"
-          onClick={ () => setRedirect(!redirect) }
-          data-testid="common_login__button-register"
-        >
-          Ainda não tenho conta
-        </button>
-      </form>
-      { isError && (
-        <h1 data-testid="common_login__element-invalid-email">
-          Um Erro qualquer
-        </h1>
-      ) }
+          <CopyToClipboard
+            text="adm@deliveryapp.com"
+            onCopy={ () => console.log('copiou - adm@deliveryapp.com') }
+          >
+            <span>adm@deliveryapp.com</span>
+          </CopyToClipboard>
+          <br />
+
+          <CopyToClipboard
+            text="--adm2@21!!--"
+            onCopy={ () => console.log('copiou - --adm2@21!!--') }
+          >
+            <span>--adm2@21!!--</span>
+          </CopyToClipboard>
+          <br />
+          <br />
+          <div className="input-field col s12">
+            <input
+              type="text"
+              placeholder="email@trybeer.com.br"
+              data-testid="common_login__input-email"
+              onChange={ (e) => setEmail(e.target.value) }
+            />
+          </div>
+          <div className="input-field col s12">
+            <input
+              type="password"
+              placeholder="*****"
+              data-testid="common_login__input-password"
+              onChange={ (e) => setPassword(e.target.value) }
+            />
+          </div>
+
+          <div className="div-buttons">
+            <button
+              className="waves-effect waves-light btn login-button"
+              type="button"
+              disabled={ loginIsDisabled({ email, password }) }
+              onClick={ handleClickLogin }
+              data-testid="common_login__button-login"
+            >
+              LOGIN
+            </button>
+            <button
+              className="waves-effect waves-light btn register-button"
+              type="button"
+              onClick={ () => setRedirect(!redirect) }
+              data-testid="common_login__button-register"
+            >
+              Ainda não tenho conta
+            </button>
+          </div>
+        </form>
+        { isError && (
+          <h1 data-testid="common_login__element-invalid-email">
+            Um Erro qualquer
+          </h1>
+        ) }
+      </div>
+      <div className="div-image">
+        <img src={ beerImage } alt="imagem de cerveja" />
+      </div>
     </div>
   );
 }

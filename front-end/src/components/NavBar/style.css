@@ -1,5 +1,20 @@
 nav {
   display: flex;
   justify-content: center;
+
+}
+
+.navbar {
+  padding: 0;
   width: 100%;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+p {
+  color: rgb(187, 187, 187)
 }
