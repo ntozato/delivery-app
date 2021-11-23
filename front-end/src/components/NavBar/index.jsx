@@ -26,10 +26,8 @@ export default function NavBar() {
   return (
     <Navbar bg="dark" variant="dark" className="navbar-div">
       <Container className="container-navbar">
-        <Navbar.Brand href="#home" className="justify-content-start">
-          <Image src={ logo } />
-        </Navbar.Brand>
-        <Nav className="justify-content-start">
+        <Image src={ logo } className="imagem" thumbnail />
+        <Nav>
           <Nav.Link
             type="button"
             data-testid="customer_products__element-navbar-link-orders"
@@ -39,10 +37,11 @@ export default function NavBar() {
           >
             { buttonName[role] }
           </Nav.Link>
-
-          {
-            role === 'customer'
-            && (
+        </Nav>
+        {
+          role === 'customer'
+          && (
+            <Nav>
               <Nav.Link
                 variant="primary"
                 data-testid="customer_products__element-navbar-link-products"
@@ -50,15 +49,15 @@ export default function NavBar() {
               >
                 Produtos
               </Nav.Link>
-            )
-          }
-        </Nav>
-        <Nav className="justify-content-center">
-          <p data-testid="customer_products__element-navbar-user-full-name">
+            </Nav>
+          )
+        }
+        <Nav>
+          <Nav.Link data-testid="customer_products__element-navbar-user-full-name">
             { userData.name }
-          </p>
+          </Nav.Link>
         </Nav>
-        <Nav className="justify-content-end">
+        <Nav>
           <Nav.Link
             type="button"
             data-testid="customer_products__element-navbar-link-logout"
