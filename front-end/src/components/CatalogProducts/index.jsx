@@ -34,7 +34,8 @@ export default function CatalogProducts() {
   }, []);
 
   return (
-    <div>
+
+    <div className="catalog">
       { isLoading ? <p>Loading....</p>
         : (
           <div className="catalog-div">

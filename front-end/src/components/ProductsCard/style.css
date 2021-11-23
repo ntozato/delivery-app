@@ -1,20 +1,14 @@
-.product-card {
-  align-items: center;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  margin: 10px;
-  padding: 15px;
-  width: 150px;
+.image-card {
+  align-self: center;
+  height: 150px;
+  max-width: 150px;
 }
 
-img {
-  height: 100px;
-  width: 100px;
+.body-text {
+  padding: 0;
 }
 
 .quantity-input {
   text-align: center;
-  width: 30px;
+  width: 10px;
 }

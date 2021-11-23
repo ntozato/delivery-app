@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 import api from '../../api/index';
 import { registerIsDisabled } from '../../helpers/validations';
 import Context from '../../context/Context';
@@ -31,56 +32,69 @@ export default function FormAdminCreateUser({ serError }) {
       serError(true);
     }
   };
+  /* 
+    <Form>
+    <Row>
+      <Col>
+        <Form.Control placeholder="First name" />
+      </Col>
+      <Col>
+        <Form.Control placeholder="Last name" />
+      </Col>
+    </Row>
+  </Form> */
 
   return (
-    <form>
-      <input
-        data-testid="admin_manage__input-name"
-        type="text"
-        name="name"
-        placeholder="Nome Sobrenome"
-        value={ newUserData.name }
-        onChange={ (e) => handleChangeNewUser(e) }
-      />
+    <Form>
+      <Row>
+        <input
+          data-testid="admin_manage__input-name"
+          type="text"
+          name="name"
+          placeholder="Nome Sobrenome"
+          value={ newUserData.name }
+          onChange={ (e) => handleChangeNewUser(e) }
+        />
 
-      <input
-        data-testid="admin_manage__input-email"
-        type="text"
-        name="email"
-        placeholder="seu-email@site.com.br"
-        value={ newUserData.email }
-        onChange={ (e) => handleChangeNewUser(e) }
-      />
+        <input
+          data-testid="admin_manage__input-email"
+          type="text"
+          name="email"
+          placeholder="seu-email@site.com.br"
+          value={ newUserData.email }
+          onChange={ (e) => handleChangeNewUser(e) }
+        />
 
-      <input
-        data-testid="admin_manage__input-password"
-        type="password"
-        name="password"
-        placeholder="******"
-        value={ newUserData.password }
-        onChange={ (e) => handleChangeNewUser(e) }
-      />
+        <input
+          data-testid="admin_manage__input-password"
+          type="password"
+          name="password"
+          placeholder="******"
+          value={ newUserData.password }
+          onChange={ (e) => handleChangeNewUser(e) }
+        />
 
-      <select
-        data-testid="admin_manage__select-role"
-        name="role"
-        value={ newUserData.role }
-        onChange={ (e) => handleChangeNewUser(e) }
-      >
-        <option value="seller">Vendedor</option>
-        <option value="customer">Cliente</option>
-        <option value="administrator">Administrador</option>
-      </select>
+        <select
+          data-testid="admin_manage__select-role"
+          name="role"
+          value={ newUserData.role }
+          onChange={ (e) => handleChangeNewUser(e) }
+        >
+          <option value="seller">Vendedor</option>
+          <option value="customer">Cliente</option>
+          <option value="administrator">Administrador</option>
+        </select>
 
-      <button
-        data-testid="admin_manage__button-register"
-        type="button"
-        onClick={ handleCLickSendNewUser }
-        disabled={ registerIsDisabled(newUserData) }
-      >
-        Cadastrar
-      </button>
-    </form>
+        <button
+          data-testid="admin_manage__button-register"
+          type="button"
+          onClick={ handleCLickSendNewUser }
+          disabled={ registerIsDisabled(newUserData) }
+        >
+          Cadastrar
+        </button>
+      </Row>
+    </Form>
   );
 }
 

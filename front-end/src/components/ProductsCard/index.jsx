@@ -45,14 +45,18 @@ export default function ProdutsCard({
   };
 
   return (
-    <Card style={ { width: '18rem' } }>
+    <Card
+      className="text-center"
+      style={ { width: '18rem', margin: '15px', padding: '5px' } }
+    >
       <Card.Img
+        className="image-card"
         variant="top"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ name }
       />
-      <Card.Body>
+      <Card.Body className="body-text" style={ { height: '80px' } }>
         <Card.Title
           data-testid={ `customer_products__element-card-title-${id}` }
         >
@@ -64,8 +68,9 @@ export default function ProdutsCard({
 
         </Card.Text>
       </Card.Body>
-      <Card.Body>
+      <Card.Body className="input-group mb-3">
         <Button
+          variant="dark"
           onClick={ decreaseProduct }
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
@@ -81,6 +86,7 @@ export default function ProdutsCard({
           onChange={ ({ target: { value } }) => setQuantityCard(value) }
         />
         <Button
+          variant="dark"
           onClick={ increaseProduct }
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
