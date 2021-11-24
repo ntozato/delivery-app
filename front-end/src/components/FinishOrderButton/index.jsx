@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 import Context from '../../context/Context';
 import api from '../../api';
 import './style.css';
@@ -42,9 +42,16 @@ const FinishOrderButton = () => {
   };
 
   return (
-    <Row>
+    <Container
+      style={ {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '30%',
+      } }
+    >
       <Button
-        className="col finish-order-btn"
+        className="mt-4 mx-5 col-5"
         variant="dark"
         data-testid="customer_checkout__button-submit-order"
         onClick={ handleFinishOrder }
@@ -53,7 +60,7 @@ const FinishOrderButton = () => {
         Finalizar pedido
 
       </Button>
-    </Row>);
+    </Container>);
 };
 
 export default FinishOrderButton;
