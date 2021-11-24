@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Context from '../../context/Context';
 import api from '../../api';
 import './style.css';
@@ -51,7 +51,8 @@ const FinishOrderButton = () => {
       } }
     >
       <Button
-        className="mt-4 mx-5 col-5"
+        style={ { alignSelf: 'center' } }
+        className="col finish-order-btn"
         variant="dark"
         data-testid="customer_checkout__button-submit-order"
         onClick={ handleFinishOrder }

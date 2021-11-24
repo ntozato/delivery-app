@@ -30,7 +30,7 @@ const RenderOrderDetails = () => {
       <td
         data-testid={ `customer_order_details__element-order-total-price-${index}` }
       >
-        { product.price * product.salesProduct.quantity }
+        { (product.price * product.salesProduct.quantity).toFixed(2) }
 
       </td>
     </tr>));

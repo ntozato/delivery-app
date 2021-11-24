@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Navigate } from 'react-router-dom';
+import { Image, Form, Button } from 'react-bootstrap';
 import api from '../../api';
 import { loginIsDisabled } from '../../helpers/validations';
 import Context from '../../context/Context';
 import beerImage from '../../images/a.jpg';
-import logo from '../../images/logo.png';
+import logo from '../../images/birita2.jpeg';
 import './style.css';
 
 function Login() {
@@ -60,97 +60,56 @@ function Login() {
       { loginOk && <Navigate to={ urlByRole[userRole] } /> }
       { redirect && <Navigate to="/register" /> }
 
-      <div className="div-form row">
-        <img className="logo" src={ logo } alt="Logotipo do Zé birita" />
-
-        <form className="col s12">
-          <CopyToClipboard
-            text="zebirita@email.com"
-            onCopy={ () => console.log('copiou - zebirita@email.com') }
-          >
-            <span>zebirita@email.com</span>
-          </CopyToClipboard>
-          <br />
-
-          <CopyToClipboard
-            text="$#zebirita#$"
-            onCopy={ () => console.log('copiou - $#zebirita#$') }
-          >
-            <span>$#zebirita#$</span>
-          </CopyToClipboard>
-          <br />
-          <br />
-
-          <CopyToClipboard
-            text="fulana@deliveryapp.com"
-            onCopy={ () => console.log('copiou - fulana@deliveryapp.com') }
-          >
-            <span>fulana@deliveryapp.com</span>
-          </CopyToClipboard>
-          <br />
-
-          <CopyToClipboard
-            text="fulana@123"
-            onCopy={ () => console.log('copiou - fulana@123') }
-          >
-            <span>fulana@123</span>
-          </CopyToClipboard>
-          <br />
-          <br />
-
-          <CopyToClipboard
-            text="adm@deliveryapp.com"
-            onCopy={ () => console.log('copiou - adm@deliveryapp.com') }
-          >
-            <span>adm@deliveryapp.com</span>
-          </CopyToClipboard>
-          <br />
-
-          <CopyToClipboard
-            text="--adm2@21!!--"
-            onCopy={ () => console.log('copiou - --adm2@21!!--') }
-          >
-            <span>--adm2@21!!--</span>
-          </CopyToClipboard>
-          <br />
-          <br />
-          <div className="input-field col s12">
-            <input
+      <div className="div-form">
+        <div style={ { display: 'flex', justifyContent: 'center' } }>
+          <Image
+            style={ { width: '200px' } }
+            className="logo"
+            src={ logo }
+            alt="Logotipo do Zé birita"
+            thumbnail
+          />
+        </div>
+        <Form>
+          <Form.Group className="mb-3 mt-5" controlId="formBasicEmail">
+            <Form.Control
               type="text"
               placeholder="email@trybeer.com.br"
               data-testid="common_login__input-email"
               onChange={ (e) => setEmail(e.target.value) }
             />
-          </div>
-          <div className="input-field col s12">
-            <input
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
               type="password"
               placeholder="*****"
               data-testid="common_login__input-password"
               onChange={ (e) => setPassword(e.target.value) }
             />
-          </div>
+          </Form.Group>
 
           <div className="div-buttons">
-            <button
-              className="waves-effect waves-light btn login-button"
+            <Button
+              variant="warning"
+              className="login-button"
               type="button"
               disabled={ loginIsDisabled({ email, password }) }
               onClick={ handleClickLogin }
               data-testid="common_login__button-login"
             >
               LOGIN
-            </button>
-            <button
-              className="waves-effect waves-light btn register-button"
+            </Button>
+            <Button
+              variant="warning"
+              className="register-button"
               type="button"
               onClick={ () => setRedirect(!redirect) }
               data-testid="common_login__button-register"
             >
               Ainda não tenho conta
-            </button>
+            </Button>
           </div>
-        </form>
+        </Form>
         { isError && (
           <h1 data-testid="common_login__element-invalid-email">
             Um Erro qualquer
@@ -158,7 +117,7 @@ function Login() {
         ) }
       </div>
       <div className="div-image">
-        <img src={ beerImage } alt="imagem de cerveja" />
+        <Image src={ beerImage } alt="imagem de cerveja" />
       </div>
     </div>
   );

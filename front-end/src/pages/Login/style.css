@@ -1,5 +1,5 @@
 .Login {
-  background-color: rgb(114, 110, 110);
+  background-color: rgb(44, 42, 42);
   display: flex;
   height: 100vh;
   width: 100%;
@@ -22,12 +22,6 @@
   padding: 20px;
 }
 
-.logo {
-  align-self: center;
-  height: 300px;
-  width: 300px;
-}
-
 .login-button {
   background-color: coral;
   margin-bottom: 20px;
@@ -48,3 +42,4 @@
   background-color: coral;
   opacity: 80%;
 }
+
