@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
 import api from '../../api/index';
 import Context from '../../context/Context';
 import './style.css';
@@ -30,18 +31,24 @@ const SelectSeller = ({ handleChange }) => {
       { seller.name }
     </option>));
 
-  return (
-    <label htmlFor="seller">
-      Vendedor responsável
-      <select
+  const renderFormSelect = () => (
+    <Form.Group>
+      <Form.Label htmlFor="seller">
+        Vendedor responsável
+      </Form.Label>
+      <Form.Select
         data-testid="customer_checkout__select-seller"
         id="seller"
         name="sellerId"
         onChange={ handleChange }
       >
-        { sellers.length > 0 ? renderSellers() : '' }
-      </select>
-    </label>
+        { sellers.length > 0 ? renderSellers() : <div>aaa</div> }
+      </Form.Select>
+    </Form.Group>
+  );
+
+  return (
+    sellers.length > 0 ? renderFormSelect() : ''
   );
 };
 

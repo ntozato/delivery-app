@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
 import Context from '../../context/Context';
 import api from '../../api';
 import './style.css';
@@ -40,14 +42,18 @@ const FinishOrderButton = () => {
   };
 
   return (
-    <button
-      data-testid="customer_checkout__button-submit-order"
-      onClick={ handleFinishOrder }
-      type="button"
-    >
-      Finalizar pedido
+    <Row>
+      <Button
+        className="col finish-order-btn"
+        variant="dark"
+        data-testid="customer_checkout__button-submit-order"
+        onClick={ handleFinishOrder }
+        type="button"
+      >
+        Finalizar pedido
 
-    </button>);
+      </Button>
+    </Row>);
 };
 
 export default FinishOrderButton;

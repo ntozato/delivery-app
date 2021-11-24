@@ -13,7 +13,6 @@ const RegisterScreen = () => {
       <Form className="bootstrap-form">
         <Form.Group
           className="mb-4"
-          controlId="formBasicName"
         >
           <Form.Label
             htmlFor="name"
@@ -31,7 +30,6 @@ const RegisterScreen = () => {
 
         <Form.Group
           className="mb-4"
-          controlId="formBasicEmail"
         >
           <Form.Label htmlFor="email">
             Email
@@ -48,7 +46,6 @@ const RegisterScreen = () => {
 
         <Form.Group
           className="mb-4"
-          controlId="formBasicPassword"
         >
           <Form.Label htmlFor="password">
             Senha

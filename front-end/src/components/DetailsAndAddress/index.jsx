@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Form, Row, Col, Badge } from 'react-bootstrap';
 import Context from '../../context/Context';
 import SelectSeller from '../SelectSeller';
 import './style.css';
@@ -10,31 +11,57 @@ const DetailsAndAddress = () => {
     setDetailsAddress({ ...detailsAddress, [name]: value });
   };
 
-  return (
-    <div>
-      <h3>Detalhes e endereço para entrega</h3>
-      <form>
+  const renderColumns = () => (
+    <>
+      <Col>
         <SelectSeller handleChange={ handleChange } />
-        <label htmlFor="address">
-          Endereço
-          <input
+      </Col>
+      <Col>
+        <Form.Group>
+          <Form.Label htmlFor="address">
+            Endereço
+          </Form.Label>
+          <Form.Control
             data-testid="customer_checkout__input-address"
             id="address"
             name="address"
             onChange={ handleChange }
           />
-        </label>
-        <label htmlFor="number">
-          Número
-          <input
+
+        </Form.Group>
+      </Col>
+      <Col>
+        <Form.Group>
+          <Form.Label htmlFor="number">
+            Número
+          </Form.Label>
+          <Form.Control
             data-testid="customer_checkout__input-addressNumber"
             id="number"
             name="number"
             type="number"
             onChange={ handleChange }
           />
-        </label>
-      </form>
+        </Form.Group>
+      </Col>
+    </>
+  );
+
+  return (
+    <div>
+      <h3 style={ { width: '100%' } }>
+        <Badge
+          style={ { width: '100%' } }
+          bg="secondary"
+        >
+          Detalhes e endereço para entrega
+        </Badge>
+      </h3>
+      <Form>
+        <Row>
+          {renderColumns()}
+        </Row>
+      </Form>
     </div>
   );
 };
