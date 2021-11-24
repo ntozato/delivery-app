@@ -5,7 +5,7 @@ import './style.css';
 const RenderOrderDetails = () => {
   const { saleData } = useContext(Context);
   const orders = () => saleData.products.map((product, index) => (
-    <tr key={ index }>
+    <tr style={ { margin: 0 } } key={ index }>
       <td
         data-testid={ `customer_order_details__element-order-table-item-number-${index}` }
       >
@@ -36,7 +36,7 @@ const RenderOrderDetails = () => {
     </tr>));
 
   return (
-    <tbody>
+    <tbody style={ { margin: 0 } }>
       { orders() }
     </tbody>
   );

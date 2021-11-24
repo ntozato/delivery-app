@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 import formatId from '../../helpers/formatId';
 import api from '../../api/index';
 import Context from '../../context/Context';
@@ -35,38 +38,34 @@ const SellerDetailOrderTable = () => {
   const a = 'seller_order_details__element-order-details-label-delivery-status';
 
   const renderButtons = () => (
-    <>
-      <th>
-        { ' ' }
-        <button
-          disabled={ saleData.status !== 'Pendente' }
-          type="button"
-          data-testid="seller_order_details__button-preparing-check"
-          onClick={ () => updateStatus(id, 'Preparando') }
-        >
-          PREPARAR PEDIDO
+    <th>
+      { ' ' }
+      <Button
+        className="mx-2"
+        variant="light"
+        disabled={ saleData.status !== 'Pendente' }
+        type="button"
+        data-testid="seller_order_details__button-preparing-check"
+        onClick={ () => updateStatus(id, 'Preparando') }
+      >
+        PREPARAR PEDIDO
 
-        </button>
-
-      </th>
-      <th>
-        { ' ' }
-        <button
-          disabled={ saleData.status !== 'Preparando' }
-          type="button"
-          data-testid="seller_order_details__button-dispatch-check"
-          onClick={ () => updateStatus(id, 'Em Trânsito') }
-        >
-          SAIU PARA ENTREGA
-        </button>
-
-      </th>
-    </>
+      </Button>
+      <Button
+        variant="light"
+        disabled={ saleData.status !== 'Preparando' }
+        type="button"
+        data-testid="seller_order_details__button-dispatch-check"
+        onClick={ () => updateStatus(id, 'Em Trânsito') }
+      >
+        SAIU PARA ENTREGA
+      </Button>
+    </th>
   );
 
   const renderTable = () => (
     <div>
-      <table>
+      <Table striped bordered hover variant="dark" className="ml-2 mr-2">
         <thead>
           <tr>
             <th data-testid="seller_order_details__element-order-details-label-order-id">
@@ -95,10 +94,17 @@ const SellerDetailOrderTable = () => {
           </tr>
         </thead>
         <SellerRenderOrderDetails />
-      </table>
-      <div data-testid="seller_order_details__element-order-total-price">
-        { `Total: R$ ${saleData.total_price.replace('.', ',')}` }
-      </div>
+      </Table>
+      <h3>
+        <Badge
+          className="mx-2"
+          size="lg"
+          bg="dark"
+          data-testid="customer_order_details__element-order-total-price"
+        >
+          { `Total: R$ ${saleData.total_price.replace('.', ',')}` }
+        </Badge>
+      </h3>
     </div>
   );
 

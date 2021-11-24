@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 import formatId from '../../helpers/formatId';
 import api from '../../api';
 import Context from '../../context/Context';
@@ -33,49 +36,61 @@ const DetailOrderTable = () => {
 
   const a = 'customer_order_details__element-order-details-label-delivery-status';
 
+  const renderButton = () => (
+    <Button
+      variant="light"
+      disabled={ saleData.status !== 'Em Trânsito' }
+      type="button"
+      data-testid="customer_order_details__button-delivery-check"
+      onClick={ () => updateStatus(id, 'Entregue') }
+    >
+      MARCAR COMO ENTREGUE
+
+    </Button>
+  );
+
   const renderTable = () => (
     <div>
-      <table>
-        <tr>
-          <th data-testid="customer_order_details__element-order-details-label-order-id">
-            PEDIDO
-            { ' ' }
-            { formatId(id) }
-          </th>
-          <th
-            data-testid="customer_order_details__element-order-details-label-seller-name"
-          >
-            P.Vend:
-            { ' ' }
-            { saleData.sellerName }
-          </th>
-          <th
-            data-testid="customer_order_details__element-order-details-label-order-date"
-          >
-            { formattedDate() }
-          </th>
-          <th
-            data-testid={ a }
-          >
-            { saleData.status }
-          </th>
-          <th>
-            <button
-              disabled={ saleData.status !== 'Em Trânsito' }
-              type="button"
-              data-testid="customer_order_details__button-delivery-check"
-              onClick={ () => updateStatus(id, 'Entregue') }
+      <Table striped bordered hover variant="dark" className="ml-2 mr-2">
+        <thead>
+          <tr style={ { margin: 0 } }>
+            <th>
+              PEDIDO
+              { ' ' }
+              { formatId(id) }
+            </th>
+            <th>
+              P.Vend:
+              { ' ' }
+              { saleData.sellerName }
+            </th>
+            <th
+              data-testid="customer_order_details__element-order-details-label-order-date"
             >
-              MARCAR COMO ENTREGUE
-
-            </button>
-          </th>
-        </tr>
+              { formattedDate() }
+            </th>
+            <th
+              data-testid={ a }
+            >
+              { saleData.status }
+            </th>
+            <th>
+              {renderButton()}
+            </th>
+          </tr>
+        </thead>
         <RenderOrderDetails />
-      </table>
-      <div data-testid="customer_order_details__element-order-total-price">
-        { `Total: R$ ${saleData.total_price.replace('.', ',')}` }
-      </div>
+      </Table>
+      <h3 data-testid="customer_order_details__element-order-total-price">
+        <Badge
+          className="mx-2"
+          size="lg"
+          bg="dark"
+          data-testid="customer_order_details__element-order-total-price"
+        >
+          { `Total: R$ ${saleData.total_price.replace('.', ',')}` }
+        </Badge>
+      </h3>
     </div>
   );
 
@@ -83,10 +98,9 @@ const DetailOrderTable = () => {
     getSaleAndSaveInState();
     socketClient.on('updateStatus', () => {
       getSaleAndSaveInState();
-      // console.log(msg);
     });
     return () => {
-      socketClient.removeListener('updateStatu');
+      socketClient.removeListener('updateStatus');
       socketClient.removeAllListeners('updateStatus');
     };
     // eslint-disable-next-line
