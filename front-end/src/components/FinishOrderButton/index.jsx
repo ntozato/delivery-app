@@ -52,7 +52,7 @@ const FinishOrderButton = () => {
     >
       <Button
         style={ { alignSelf: 'center' } }
-        className="col finish-order-btn"
+        className="col finish-order-btn mt-4"
         variant="dark"
         data-testid="customer_checkout__button-submit-order"
         onClick={ handleFinishOrder }

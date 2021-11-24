@@ -36,7 +36,7 @@ const RegisterButton = () => {
     <div>
       { redirect && <Navigate to="/customer/products" /> }
       <Button
-        variant={ registerIsDisabled(registerData) ? 'secondary' : 'primary' }
+        variant="warning"
         data-testid="common_register__button-register"
         type="button"
         disabled={ registerIsDisabled(registerData) }

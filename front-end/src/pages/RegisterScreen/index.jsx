@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
 import Context from '../../context/Context';
 import RegisterButton from '../../components/RegisterButton';
 import './style.css';
@@ -9,7 +10,17 @@ const RegisterScreen = () => {
 
   return (
     <div className="registerScreen-main-div">
-      <h1>Registre sua Conta</h1>
+      <h1
+        className="register-screen-title"
+        style={ { width: '100%' } }
+      >
+        <Badge
+          style={ { width: '100%' } }
+          bg="secondary"
+        >
+          Registre sua Conta
+        </Badge>
+      </h1>
       <Form className="bootstrap-form">
         <Form.Group
           className="mb-4"

@@ -1,19 +1,10 @@
-.registerScreen-main-div {
-  align-items: center;
-  justify-content: center;
-}
-
-h1 {
-  color: rgba(0, 0, 0, 0.6);
-  font-family: arial , sans-serif;
-  font-size: 16px;
-  margin-bottom: 1px;
-  text-align: center;
-}
-
 .bootstrap-form {
   align-items: center;
   justify-content: center;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+.register-screen-title {
+  margin-top: -5px;
 }
