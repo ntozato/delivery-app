@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Badge from 'react-bootstrap/Badge';
 import Context from '../../context/Context';
 import './style.css';
 
@@ -12,10 +13,18 @@ const TotalPrice = () => {
     return String((total).toFixed(2)).replace('.', ',');
   };
   return (
-    <div data-testid="customer_checkout__element-order-total-price">
-      Total R$
-      { calculateTotal() }
-    </div>
+    <h3>
+      {' '}
+      <Badge
+        size="lg"
+        bg="dark"
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        Total R$
+        { calculateTotal() }
+      </Badge>
+
+    </h3>
   );
 };
 

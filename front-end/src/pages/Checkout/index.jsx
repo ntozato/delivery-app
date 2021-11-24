@@ -1,26 +1,28 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table';
 import RenderOrders from '../../components/RenderOrders';
 import TotalPrice from '../../components/TotalPrice';
 import DetailsAndAddress from '../../components/DetailsAndAddress';
 import FinishOrderButton from '../../components/FinishOrderButton';
-// teste reloadEvaluator
 
 const Checkout = () => (
-  <div>
-    <table border="1">
-      <tr>
-        <th>Item</th>
-        <th>Descrição</th>
-        <th>Quantidade</th>
-        <th>Valor Unitário</th>
-        <th>Sub-total</th>
-        <th>Remover</th>
-      </tr>
+  <>
+    <Table striped bordered hover variant="dark" className="ml-2 mr-2">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Valor Unitário</th>
+          <th>Sub-total</th>
+          <th>Remover</th>
+        </tr>
+      </thead>
       <RenderOrders />
       <TotalPrice />
-    </table>
+    </Table>
     <DetailsAndAddress />
     <FinishOrderButton />
-  </div>);
+  </>);
 
 export default Checkout;

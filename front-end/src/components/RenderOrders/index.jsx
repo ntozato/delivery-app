@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Button from 'react-bootstrap/Button';
 import Context from '../../context/Context';
 
 const RenderOrders = () => {
@@ -54,16 +55,19 @@ const RenderOrders = () => {
           >
             { calculateSubtotal(order.qtd, order.price) }
           </td>
-          <button
-            data-testid={
-              `customer_checkout__element-order-table-remove-${index}`
-            }
-            type="button"
-            onClick={ () => deleteOrder(order) }
-          >
-            Remover
+          <td>
+            <Button
+              variant="light"
+              data-testid={
+                `customer_checkout__element-order-table-remove-${index}`
+              }
+              type="button"
+              onClick={ () => deleteOrder(order) }
+            >
+              Remover
 
-          </button>
+            </Button>
+          </td>
         </tr>
       )) }
     </tbody>
