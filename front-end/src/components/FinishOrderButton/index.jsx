@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Context from '../../context/Context';
 import api from '../../api';
+import socketClient from '../../helpers/socketClient';
 import './style.css';
 
 const FinishOrderButton = () => {
@@ -35,6 +36,7 @@ const FinishOrderButton = () => {
   const handleFinishOrder = async () => {
     try {
       const { data } = await api.createSale(requestObject, token);
+      socketClient.emit('updateStatus');
       navigate(`/customer/orders/${data}`);
     } catch (error) {
       console.log(error);
